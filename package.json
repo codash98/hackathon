@@ -1,0 +1,26 @@
+{
+  "name": "hackathon",
+  "version": "1.0.0",
+  "description": "hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codash98/hackathon.git"
+  },
+  "author": "GECA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codash98/hackathon/issues"
+  },
+  "homepage": "https://github.com/codash98/hackathon#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "eslint": "^4.19.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.11"
+  }
+}
