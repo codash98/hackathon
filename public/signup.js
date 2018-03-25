@@ -3,9 +3,9 @@ window.onload = function(){
     var txtConfirmPassword = document.getElementById("txtConfirmPassword");
     txtPassword.onchange = ConfirmPassword;
     txtConfirmPassword.onkeyup = ConfirmPassword;
-    function ConfirmPassword() {
+    function ConfirmPassword(){
         txtConfirmPassword.setCustomValidity("");
-        if (txtPassword.value != txtConfirmPassword.value) {
+        if (txtPassword.value != txtConfirmPassword.value){
             txtConfirmPassword.setCustomValidity("Passwords do not match.");
         }
     }

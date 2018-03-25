@@ -45,6 +45,15 @@ app.get("/signup", function(req, res){
 app.get("/admin", function(req, res){
     res.render("lg&su/admin.ejs");
 });
+app.get("/landingpage", function(req, res){
+    res.render("user/landingpage.ejs");
+});
+app.get("/resthouse", function(req, res){
+    res.render("user/resthouse.ejs");
+});
+app.get("/result", function(req, res){
+    res.render("user/result.ejs");
+});
 
 
 //INDEX - show all resthouses

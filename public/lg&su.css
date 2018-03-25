@@ -16,13 +16,20 @@
 }
 
 /* Modal */
-}
 .modal-content {
-  /* 80% of window height */
-  height: 60%;
-  background-color:#BBD6EC;
+  background-color: gray;
 }        
 .modal-dialog {
         width: 360px;
-        height:600px !important;
+        height:600px;
+}
+
+/* Background-image */
+body{
+	background-image: url(../img/background.jpg);
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    background-size:cover
 }
