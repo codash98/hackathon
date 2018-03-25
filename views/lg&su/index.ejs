@@ -16,17 +16,26 @@
 		<!-- Log-in Form -->
 		<div id="loginbox" class="col-lg-4">
 			<h4>Log In Here</h4>
-			<form>
+			<form class="" method="post" action="#">
 				<div class="form-group">
-					<label for="email">Email address</label>
-					<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+					<label for="email" class="cols-sm-2">Email ID :</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<input name="Email" id="Email" class="form-control" placeholder="Enter your Email"
+							required type="email"/>
+							<hr/>
+						</div>
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" id="password" placeholder="Password">
+					<label for="password" class="cols-sm-2">Password</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<input type="password" class="form-control" name="password" id="txtPassword"  placeholder="Enter your Password" title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                                    required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/>
+						</div>
+					</div>
 				</div>
-			</form>
-			<form class="form-inline">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-lg-4">
@@ -51,9 +60,6 @@
 			
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
 				<div class="modal-body">
 					<div class="row">
 						

@@ -18,7 +18,7 @@
 
 /* Modal */
 .modal-content {
-  background-color: gray;
+  background-color: rgba(136, 136, 136, 0.8);
 }        
 .modal-dialog {
         width: 360px;
@@ -43,8 +43,10 @@ small{
 #navhead{
     font-weight: bold;
 }
+
 /* Login Box */
 #loginbox{
+
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
 }
