@@ -12,7 +12,8 @@
 
 /* Admin Form */
 #admin{
-    padding-top: 80px; 
+
+    padding-top: 20%; 
 }
 
 /* Modal */
@@ -26,10 +27,24 @@
 
 /* Background-image */
 body{
-	background-image: url(../img/background.jpg);
+	background-image: url("lgbackground.jpg");
 	background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 500px;
-    background-size:cover
+    background-size:cover;
+    color: black;
+
+}
+small{
+    color: black;
+}
+
+#navhead{
+    font-weight: bold;
+}
+/* Login Box */
+#loginbox{
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
 }

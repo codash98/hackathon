@@ -11,17 +11,10 @@
 <div class="container">
 	<div class="row">
 		
-		<div class="col-lg-2"></div>
-		
-		<!-- Railway Image -->
-		<div class="col-lg-3">
-			<img id="image" src="http://photos.wikimapia.org/p/00/02/02/51/59_big.jpg">
-		</div>
-		
-		<div class="col-lg-1"></div>
+		<div class="col-lg-6"></div>
 		
 		<!-- Log-in Form -->
-		<div class="col-lg-4">
+		<div id="loginbox" class="col-lg-4">
 			<h4>Log In Here</h4>
 			<form>
 				<div class="form-group">
@@ -35,11 +28,17 @@
 			</form>
 			<form class="form-inline">
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Login</button>
-					<p><a data-toggle="modal" data-target="#myModal">Forgot Password</a></p>
+					<div class="row">
+						<div class="col-lg-4">
+							<button type="submit" class="btn btn-primary">Login</button>
+						</div>
+						<div class="col-lg-8">
+							<p><a data-toggle="modal" data-target="#myModal">Forgot Password</a></p>
+						</div>
+					</div>
 				</div>
 			</form>
-			<small id="Login Help" class="form-text text-muted">New User? <a href="/signup">Sign Up here.</a></small>
+			<small class="form-text">New User? <a href="/signup">Sign Up here.</a></small>
 		</div>
 		
 		<div class="col-lg-1"></div>
