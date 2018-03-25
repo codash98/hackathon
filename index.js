@@ -34,7 +34,8 @@ app.listen(3000, function(){
 });
 
 app.get("/", function(req, res){
-    res.redirect("/irctcTourism");
+    // res.redirect("/irctcTourism");
+    res.render("signup3.ejs");
 });
 
 //INDEX - show all resthouses
