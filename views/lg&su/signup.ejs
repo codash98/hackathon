@@ -68,18 +68,50 @@
 						</div>
 					</div>
 					<div class="form-group ">
-					  <input type="submit" name="btnSignup" value="Sign up" id="btnSignup" class="btn btn-primary" />
+					  <input type="submit" name="btnSignup" value="Sign up" id="btnSignup" class="btn btn-primary" data-toggle="modal" data-target="#myModal"/>
 					</div>
 				</form>
-				<script type="text/javascript">
-				
-				</script>
- 
 			</div>
 
 			<div class="col-lg-3">
 			</div>
 		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+				
+				  <!-- Modal content-->
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+					  <h4 class="modal-title text-center">We have sent an OTP to your mobile No.</h4>
+					</div>
+					<div class="modal-body">
+					  <div class="row">
+						<div class="col-lg-1"></div>
+						<div class="col-lg-10">
+						  <h5 class="text-center">Verify your mobile No.</h5>
+						  <form method="post" id="veryfyotp" action="">                    
+							<div class="form-group">
+							  <span style="color:red;"></span>
+							  <input type="text" class="form-control text-center" name="otp" placeholder="Enter your OTP" required="">
+							</div>
+							<div class="form-group">
+							<button type="submit" class="btn btn-primary col-sm-3">Verify</button>
+							</div>
+							<br>
+							<br>
+							  <div class="form-group">
+							  <p>Didn't received SMS, <a href="OTP.html">Click here</a> to resend</p>
+							</div></form>
+						</div>
+						<div class="col-lg-1"></div>
+			
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
 	</div>
 	<script src="/signup.js"></script>
     <% include partial/footer %>

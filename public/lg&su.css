@@ -14,3 +14,15 @@
 #admin{
     padding-top: 80px; 
 }
+
+/* Modal */
+}
+.modal-content {
+  /* 80% of window height */
+  height: 60%;
+  background-color:#BBD6EC;
+}        
+.modal-dialog {
+        width: 360px;
+        height:600px !important;
+}
