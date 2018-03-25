@@ -33,10 +33,19 @@ app.listen(3000, function(){
     console.log("Server has started");
 });
 
+
+// Pages Links
 app.get("/", function(req, res){
     // res.redirect("/irctcTourism");
-    res.render("signup3.ejs");
+    res.render("lg&su/index.ejs");
 });
+app.get("/signup", function(req, res){
+    res.render("lg&su/signup.ejs");
+});
+app.get("/admin", function(req, res){
+    res.render("lg&su/admin.ejs");
+});
+
 
 //INDEX - show all resthouses
 app.get("/irctcTourism", function(req, res){

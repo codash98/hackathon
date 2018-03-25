@@ -1,0 +1,16 @@
+/* CSS file for login and sign up pages */
+
+.container{
+    padding-top: 60px;
+}
+
+/* Login Image */
+#image{
+    width: 100%;
+    height: 100%;
+}
+
+/* Admin Form */
+#admin{
+    padding-top: 80px; 
+}
