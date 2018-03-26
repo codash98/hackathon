@@ -3,6 +3,10 @@
 
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
+    padding: 10px;
+}
+textarea{
+    border-radius: 15px;
 }
 img{
     height: 40%;
@@ -17,6 +21,25 @@ body{
     min-height: 500px;
     background-size:cover;
 }
-p{
+/* Navbar */
+#navhead{
+    font-weight: bold;
+}
+
+#para{
+    color: white;
+}
+
+/* image */
+#image{
+    height: 100%;
+    width: 100%;
+}
+
+label{
+    color:white;
+}
+
+td,th{
     color: white;
 }

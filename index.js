@@ -54,6 +54,12 @@ app.get("/resthouse", function(req, res){
 app.get("/result", function(req, res){
     res.render("user/result.ejs");
 });
+app.get("/mybooking", function(req, res){
+    res.render("user/mybooking.ejs");
+});
+app.get("/contact", function(req, res){
+    res.render("user/contact.ejs");
+});
 
 
 //INDEX - show all resthouses
