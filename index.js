@@ -49,40 +49,38 @@ app.get("/", function(req, res){
 // });
 
 
-<<<<<<< HEAD
-// Pages Links
-app.get("/", function(req, res){
-    // res.redirect("/irctcTourism");
-    res.render("lg&su/index.ejs");
-});
-app.get("/signup", function(req, res){
-    res.render("lg&su/signup.ejs");
-});
-app.get("/admin", function(req, res){
-    res.render("lg&su/admin.ejs");
-});
-app.get("/landingpage", function(req, res){
-    res.render("user/landingpage.ejs");
-});
-app.get("/resthouse", function(req, res){
-    res.render("user/resthouse.ejs");
-});
-app.get("/result", function(req, res){
-    res.render("user/result.ejs");
-});
-app.get("/mybooking", function(req, res){
-    res.render("user/mybooking.ejs");
-});
-app.get("/contact", function(req, res){
-    res.render("user/contact.ejs");
-});
-app.get("/headadmin", function(req, res){
-    res.render("admin/headadmin.ejs");
-});
-app.get("/sadmin", function(req, res){
-    res.render("admin/sadmin.ejs");
-});
-=======
+// // Pages Links
+// app.get("/", function(req, res){
+//     // res.redirect("/irctcTourism");
+//     res.render("lg&su/index.ejs");
+// });
+// app.get("/signup", function(req, res){
+//     res.render("lg&su/signup.ejs");
+// });
+// app.get("/admin", function(req, res){
+//     res.render("lg&su/admin.ejs");
+// });
+// app.get("/landingpage", function(req, res){
+//     res.render("user/landingpage.ejs");
+// });
+// app.get("/resthouse", function(req, res){
+//     res.render("user/resthouse.ejs");
+// });
+// app.get("/result", function(req, res){
+//     res.render("user/result.ejs");
+// });
+// app.get("/mybooking", function(req, res){
+//     res.render("user/mybooking.ejs");
+// });
+// app.get("/contact", function(req, res){
+//     res.render("user/contact.ejs");
+// });
+// app.get("/headadmin", function(req, res){
+//     res.render("admin/headadmin.ejs");
+// });
+// app.get("/sadmin", function(req, res){
+//     res.render("admin/sadmin.ejs");
+// });
 // // Pages Links
 // app.get("/", function(req, res){
 //     // res.redirect("/irctcTourism");
@@ -110,7 +108,6 @@ app.get("/sadmin", function(req, res){
 //     res.render("user/contact.ejs");
 // });
 
->>>>>>> 256bc158f6870a0f29756c7093070ef2aee56ed2
 
 //INDEX - show all resthouses
 app.get("/irctcTourism", function(req, res){
