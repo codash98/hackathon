@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% include partial/header %>
 <!-- signup Form -->
 <div class="container">
@@ -116,4 +117,124 @@
 				<p><a href="landingpage">Just for sake of further procedure</a></p>
 	</div>
 	<script src="/signup.js"></script>
+=======
+<% include partial/header %>
+<!-- signup Form -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3"></div>
+
+		<div id="loginbox" class="col-lg-6">
+			<br>
+			<h3 class="text-center">Sign Up</h3>
+			<form class="" method="post" action="#">
+				<div class="form-group">
+					<label for="name" class="cols-sm-2">Name :</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" required/>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="cols-sm-2">Email :</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<input name="txtEmail" id="txtEmail" class="form-control" placeholder="Enter Email"
+							required type="email" />
+							<hr/>
+						</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<h6>Enter your post</h6>
+						<div class="col-lg-2"></div>
+						<select id="railway" class="form-control">
+							<option selected>Railway Employee</option>
+							<option >Lok Sabha Member</option>
+							<option >Rajya Sabha Member</option>
+							<option >Retired Railway Employee</option>
+							<option >Other</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="railwayID" class="cols-sm-2">Railway ID</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="text" class="form-control" name="railwayID" id="railwayID"  placeholder="Enter your EmployeeID" required/>
+							</div>
+							<p>An OTP will be sent to your registered mobile No.</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="phone_no">Phone Number  (format: xxxxxxxxxx)</label>
+						<input type="text" name="num" pattern="^\d{10}$" data-validation="number" mindata-validation-allowing="negative,number" input name="color" data-validation="number" datavalidation-ignore="$" size="10" maxlength="10" required="required" class="form-control" id="phone_no" placeholder="Phone Number"required>
+					</div>
+					<div class="form-group">
+						<label for="password" class="cols-sm-2">Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="password" class="form-control" name="password" id="txtPassword"  placeholder="Enter your Password" title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                                    required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="confirm" class="cols-sm-2">Confirm Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="password" class="form-control" name="confirm" id="txtConfirmPassword"  placeholder="Confirm your Password"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group ">
+					  <input type="submit" name="btnSignup" value="Sign up" id="btnSignup" class="btn btn-primary" data-toggle="modal" data-target="#myModal"/>
+					</div>
+				</form>
+				<br>
+			</div>
+
+			<div class="col-lg-3">
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+				
+				  <!-- Modal content-->
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+					  <h4 class="modal-title text-center"></h4>
+					</div>
+					<div class="modal-body">
+					  <div class="row">
+						<div class="col-lg-1"></div>
+						<div class="col-lg-10">
+							<h5 class="text-center">We have sent an OTP to your mobile No.</h5>
+							<br>
+						  <h6 class="text-center">Verify your mobile No.</h6>
+						  <form method="post" id="veryfyotp" action="">                    
+							<div class="form-group">
+							  <span style="color:red;"></span>
+							  <input type="text" class="form-control text-center" name="otp" placeholder="Enter your OTP" required="">
+							</div>
+							<div class="form-group">
+							<button type="submit" class="btn btn-primary col-sm-3">Verify</button>
+							</div>
+							  <div class="form-group">
+							  <p>Didn't received SMS, <a href="OTP.html">Click here</a> to resend</p>
+							</div></form>
+						</div>
+						<div class="col-lg-1"></div>
+			
+					  </div>
+					</div>
+				  </div>
+				</div>
+				</div>
+				<p><a href="landingpage">Just for sake of further procedure</a></p>
+	</div>
+	<script src="/signup.js"></script>
+>>>>>>> c3ad590144341987fe0c3a7290ffa5710c869440
     <% include partial/footer %>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% include partial/header %>
  	
 <!-- admin login -->
@@ -85,4 +86,93 @@
 </div>
 
 
+=======
+<% include partial/header %>
+ 	
+<!-- admin login -->
+<div id="admin" class="container">
+	<div class="row">
+
+		<div class="col-lg-4"></div>
+		
+		<div id="loginbox" class="col-lg-4">
+			<br>
+			<form class="" method="post" action="#">
+				<div class="form-group">
+					<label for="email" class="cols-sm-2">Email :</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<input name="aemail" id="aemail" class="form-control" placeholder="Enter Email" required type="email" />
+							<hr/>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+						<label for="password" class="cols-sm-2">Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="password" class="form-control" name="password" id="txtPassword"  placeholder="Enter your Password" title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                                    required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/>
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-lg-4">
+							<button type="submit" class="btn btn-primary">Login</button>
+						</div>
+						<div class="col-lg-8">
+								<p><a data-toggle="modal" data-target="#myModal">Forgot Password</a></p>
+						</div>
+					</div>
+				</div>
+			</form>
+			<br>
+		</div>
+		
+		<div class="col-lg-4"></div>	
+	
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="row">
+							
+							<div class="col-lg-1"></div>
+							
+							<div class="col-lg-10">
+								<h3 class="text-center"><i class="fa fa-lock fa-4x"></i></h3>
+								<h2>Forgot Password?</h2>
+								<p>You can reset your password here.</p>
+								<form class="form">
+									<fieldset>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+												<input id="emailInput" placeholder="email address" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
+											</div>
+										</div>
+										<div class="form-group">
+											<input class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit">
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							
+							<div class="col-lg-1"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+</div>
+
+
+>>>>>>> c3ad590144341987fe0c3a7290ffa5710c869440
 <% include partial/footer %>

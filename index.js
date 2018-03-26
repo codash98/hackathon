@@ -37,13 +37,48 @@ var restHouseSchema = new mongoose.Schema({
 //     res.render("landing");
 // });
 
+<<<<<<< HEAD
 app.get("/", function(req, res){
     // Resthouse.find({}, function(err, result){
     //     if(err) console.log(err);
     //     console.log(result);
     // });
     res.redirect("/irctcTourism");
+=======
+
+app.listen(3000, function(){
+    console.log("Server has started");
 });
+
+
+// Pages Links
+app.get("/", function(req, res){
+    // res.redirect("/irctcTourism");
+    res.render("lg&su/index.ejs");
+});
+app.get("/signup", function(req, res){
+    res.render("lg&su/signup.ejs");
+});
+app.get("/admin", function(req, res){
+    res.render("lg&su/admin.ejs");
+});
+app.get("/landingpage", function(req, res){
+    res.render("user/landingpage.ejs");
+});
+app.get("/resthouse", function(req, res){
+    res.render("user/resthouse.ejs");
+>>>>>>> c3ad590144341987fe0c3a7290ffa5710c869440
+});
+app.get("/result", function(req, res){
+    res.render("user/result.ejs");
+});
+app.get("/mybooking", function(req, res){
+    res.render("user/mybooking.ejs");
+});
+app.get("/contact", function(req, res){
+    res.render("user/contact.ejs");
+});
+
 
 //INDEX - show all resthouses
 app.get("/irctcTourism", function(req, res){
