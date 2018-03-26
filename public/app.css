@@ -1,8 +1,41 @@
+body{
+    padding-top: 65px;
+}
 .black{
     background: black;
-    color: white;
+    color: #777;
     font-size: larger;
 }
+
 .header{
     color: black;
+}
+
+#wrapper {
+  display: flex;
+}
+#left {
+  flex: 0 0 40%;
+}
+#right {
+  flex: 1;
+}
+#leftform {
+  flex: 0 0 50%;
+}
+#rightform {
+  flex: 1;
+}
+.carousel{
+    background: #2f4357;
+    margin-top: 20px;
+}
+/*.carousel .item{
+    min-height: 280px;  Prevent carousel from being distorted if for some reason image doesn't load 
+}*/
+.carousel .item img{
+    margin: 10px auto; /* Align slide image horizontally center */
+}
+.bs-example{
+	margin: 20px;
 }
