@@ -60,7 +60,12 @@ app.get("/mybooking", function(req, res){
 app.get("/contact", function(req, res){
     res.render("user/contact.ejs");
 });
-
+app.get("/headadmin", function(req, res){
+    res.render("admin/headadmin.ejs");
+});
+app.get("/sadmin", function(req, res){
+    res.render("admin/sadmin.ejs");
+});
 
 //INDEX - show all resthouses
 app.get("/irctcTourism", function(req, res){
