@@ -38,6 +38,7 @@ var Loc = mongoose.model("locations", locationSchema);
 
 
 //retrive all locs
+var p = 500;
 Loc.find({}, function(err, flocation){
     if(err)
     {
@@ -46,6 +47,10 @@ Loc.find({}, function(err, flocation){
     else
     {
         console.log("Locations");
-        console.log(flocation);
+        console.log(p);
+        p = flocation.length;
+        //console.log(flocation);
+        callback(p);
     }
+    console.log(p);
 });
