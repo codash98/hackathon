@@ -177,14 +177,20 @@ app.get("/irctcTourism/new", function(req, res){
 });
 
 //BOOK - show searched resthouses for booking
-app.post("/search", function(req, res){
+app.post("/irctcTourism/search", function(req, res){
     // get data from form and add to resthouses database
     var city = req.body.city,
     checkIn = req.body.checkIn,
     checkOut = req.body.checkOut,
     guest     = req.body.guestNo,
     oclass = req.body.oclass;
-    var result;
+    var roomType;
+    if(oclass < 3)
+        oclass = 0;
+    else
+        oclass = 1;
+    var resthouseData = {city: city, checkIn: checkIn, checkOut: checkOut, guest: guest, roomType:roomType};
+    console.log(resthouseData);
 //     Resthouse.find({
 //         city: city
 //    }, function(err, searchResult){
@@ -199,24 +205,39 @@ app.post("/search", function(req, res){
     // var searchResthouse = {city: city, checkIn: checkIn, checkOut: checkOut, guest: guest, searchResult: searchResult};
     // res.render("book", {searchResthouse: searchResthouse});
     // Create a new resthouse and save to DB
-    if(oclass < 3){
-        result = Resthousebooking.find({"$and" : [{city : city}, {roomType : 0}, 
-                {"$or" :[{"$and" : [{checkIn : {"$gte": new ISODate(checkIn)} }, {checkIn : {"$lte": new ISODate(checkOut)} } ] },
-                {"$and" : [{checkOut : {"$gte": new ISODate(checkIn)} }, {checkOut : {"$lte": new ISODate(checkOut)} } ] }]} ]}).length;
-        if(result == 0)
-        {
-            Resthouse.find({"$and" : [{city:city}, {roomType: 0}]}, function(err, searchRes){
-            if(err)
-                console.log(err);
-            else{
-                res.redirect("/search");
-            }
-            });
-        }
-        else{
-            res.send("Not Found!");
-        }
-    }
+        
+        Resthousebooking.find({"$and" : [{city : city}, {roomType : roomType}, 
+                                         {"$or" :[{"$and" : [{checkIn : {"$gte": (checkIn)} }, {checkIn : {"$lte": (checkOut)} } ] },
+                                         {"$and" : [{checkOut : {"$gte": (checkIn)} }, {checkOut : {"$lte": (checkOut)} } ] }]} ]}, 
+                function(err, queryResult){
+                    if(err) console.log(err);
+                    if(queryResult.length == 0){
+                        Resthouse.find({"$and" : [{city:resthouseData.city}, {roomType: resthouseData.roomType}]}, function(err, searchRes){
+                            if(err)
+                                console.log(err);
+                            else{
+                                var searchResthouse = {resthouseData:resthouseData, searchRes: searchRes}
+                                console.log(resthouseData);
+                                res.render("book", {searchResthouse: searchResthouse});
+                            }
+                            });
+                    }
+                    else{
+                        res.send("Not Found!");
+                    }
+                });
+        // if(result == 0)
+        // {
+        //     Resthouse.find({"$and" : [{city:city}, {roomType: 0}]}, function(err, searchRes){
+        //     if(err)
+        //         console.log(err);
+        //     else{
+        //         var searchResthouse = {city: city, checkIn: checkIn, checkOut: checkOut, guest: guest, searchRes: searchRes}
+        //         res.render("book", {searchResthouse: searchResthouse});
+        //     }
+        //     });
+        // }
+    
         //     function(err, newlyCreated){
         // if(err){
         //     console.log(err);
@@ -226,23 +247,10 @@ app.post("/search", function(req, res){
         //     res.redirect("/searchResult");
         // }
     // }
-    else{
-        result = Resthousebooking.find({"$and" : [{city : city}, {roomType : 1}, 
-            {"$or" :[{checkIn : {"$gte": checkIn} }, {checkOut : {"$lte" : checkOut}}]} ]}).length;
-        if(result == 0)
-        {
-            Resthouse.find({"$and" : [{city:city}, {roomType: 1}]}, function(err, searchRes){
-            if(err)
-                console.log(err);
-            else{
-                res.redirect("/searchResult");
-            }
-            });
-        }
-        else{
-            res.send("Not Found!");
-        }
-}
+    
+        // else{
+            
+        // }
 });
 
 // SHOW - shows more info about one resthouse

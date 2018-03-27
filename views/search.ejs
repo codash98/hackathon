@@ -1,9 +1,9 @@
 <% include partials/header %>
 <div class="container">
-<form class="form-inline" action="/search" method="POST">
+<form class="form-inline" action="/irctcTourism/search" method="POST">
     <div class="form-group">
         <label class="sr-only" for="inputCity">City</label>
-        <input id="inputCity" class="form-control" type="text" size="50" placeholder="City" autocomplete="on" required="true">
+        <input id="inputCity" class="form-control" type="text" size="50" placeholder="City" name="city" autocomplete="on" required="true">
     </div>
     <div class="form-group">
         <label class="sr-only" for="inputCheckIn">Check In</label>
@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
     	<label class="sr-only" for="inputGuests">Guests</label>
-		<input id="inputGuests"  type="number" min="1" class="form-control" placeholder="No. of Guests" required="true">
+		<input id="inputGuests"  type="number" min="1" class="form-control" placeholder="No. of Guests" name="guest" required="true">
     </div>
     <div class="form-group">
     	<label class="sr-only" for="inputGuests">Officer Class</label>
