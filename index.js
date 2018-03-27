@@ -3,6 +3,9 @@ var app = express();
 
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var bcrypt = require('bcrypt');
+var session = require('express-session')
+
 app.use(express.static("public"));
 // SCHEMA SETUP
 
@@ -77,14 +80,24 @@ var UserSchema = new mongoose.Schema({
 
 });
 
+UserSchema.pre('save', function (next) {
+    var user = this;
+    bcrypt.hash(user.password, 10, function (err, hash){
+      if (err) {
+        return next(err);
+      }
+      user.password = hash;
+      next();
+    })
+  });
+
+
  var User = mongoose.model('User', UserSchema);
  module.exports = User;
  var Resthouse = mongoose.model("Resthouses", restHouseSchema);
  var Resthousebooking = mongoose.model("Resthousebookings", restHouseBookingsSchema);
- var bcrypt = require('bcrypt');
- const saltRounds = 10;
- const myPlaintextPassword = 's0/\/\P4$$w0rD';
- const someOtherPlaintextPassword = 'not_bacon';
+
+ //hashing a password before saving it to the database
 
 app.get("/", function(req, res){
     res.redirect("/login");
