@@ -61,7 +61,7 @@ img{
 }
 /* Background-image */
 body{
-	background-image: url("ubackground.jpg");
+	background-image: url("main.jpg");
 	background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
