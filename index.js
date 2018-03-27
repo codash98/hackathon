@@ -100,16 +100,16 @@ UserSchema.pre('save', function (next) {
  //hashing a password before saving it to the database
 
 app.get("/", function(req, res){
-    res.redirect("/login");
+    res.redirect("login");
 });
 
 app.get("/login", function(req, res){
-    res.render("lg&su/login.ejs");
+    res.render("login");
     //res.redirect("/irctcTourism");
 });
 
 app.get("/signup", function(req, res){
-    res.render("lg&su/signup.ejs");
+    res.render("signup");
 });
 
 app.post("/signup", function(req, res){
@@ -145,7 +145,7 @@ app.post("/signup", function(req, res){
           if (err) {
             return next(err)
           } else {
-            return res.redirect('/login');
+            return res.redirect('login');
           }
         });
       }
@@ -173,7 +173,7 @@ app.post("/signup", function(req, res){
 // });
 
 
-//INDEX - show all resthouses
+// - show all resthouses
 app.get("/irctcTourism", function(req, res){
     // Get all resthouses from DB
     Resthouse.find({}, function(err, allResthouse){
@@ -317,6 +317,10 @@ app.post("/irctcTourism/search", function(req, res){
         // }
 });
 
+app.get("/irctcTourism/myBooking", function(req, res) {
+    res.render("mybooking");
+});
+
 // SHOW - shows more info about one resthouse
 app.get("/irctcTourism/:id", function(req, res){
     //find the resthouse with provided ID
@@ -328,6 +332,18 @@ app.get("/irctcTourism/:id", function(req, res){
             res.render("show", {resthouse: foundResthouse});
         }
     });
+});
+
+app.get("/irctcTourism/myBooking", function(req, res) {
+    res.render("mybooking");
+});
+
+app.get("/contactIRCTC", function(req, res) {
+    res.render("contact");
+});
+
+app.get("/logAdmin", function(req, res) {
+    res.render("admin");
 });
 
 
