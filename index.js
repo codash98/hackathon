@@ -12,6 +12,7 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost:27017/resthouse_1");
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(session({secret: 'your secret', saveUninitialized: true, resave: false}));
 app.set("view engine", "ejs");
 
 var restHouseSchema = new mongoose.Schema({
@@ -80,6 +81,26 @@ var UserSchema = new mongoose.Schema({
 
 });
 
+UserSchema.statics.authenticate = function (email, password, callback) {
+    User.findOne({ email: email })
+      .exec(function (err, user) {
+        if (err) {
+          return callback(err)
+        } else if (!user) {
+          var err = new Error('User not found.');
+          err.status = 401;
+          return callback(err);
+        }
+        bcrypt.compare(password, user.password, function (err, result) {
+          if (result === true) {
+            return callback(null, user);
+          } else {
+            return callback();
+          }
+        })
+      });
+}
+
 UserSchema.pre('save', function (next) {
     var user = this;
     bcrypt.hash(user.password, 10, function (err, hash){
@@ -90,6 +111,7 @@ UserSchema.pre('save', function (next) {
       next();
     })
   });
+
 
 
  var User = mongoose.model('User', UserSchema);
@@ -108,19 +130,52 @@ app.get("/login", function(req, res){
     //res.redirect("/irctcTourism");
 });
 
+app.post("/login", function(req, res, next){
+    console.log(req.body.logemail);
+    console.log(req.body.logpassword);
+    
+    if(req.body.logemail && req.body.logpassword) {
+        User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
+          if (error || !user) {
+            var err = new Error('Wrong email or password.');
+            err.status = 401;
+            return next(err);
+          } else {
+            req.session.userId = user._id;
+            return res.redirect('/profile');
+          }
+        });
+      } else {
+        var err = new Error('All fields required.');
+        err.status = 400;
+        return next(err);
+      }
+});
+
+// GET route after registering
+app.get('/profile', function (req, res, next) {
+    User.findById(req.session.userId)
+      .exec(function (error, user) {
+        if (error) {
+          return next(error);
+        } else {
+          return res.json({ name: user.name, email: user.email });
+        }
+      });
+  });
+
 app.get("/signup", function(req, res){
     res.render("signup");
 });
 
-app.post("/signup", function(req, res){
-    console.log(req.body.name);
-    console.log(req.body.email);
-    console.log(req.body.username);
-    console.log(req.body.password);
-    console.log(req.body.passwordConf);
-    console.log(req.body.contact);
-    console.log(req.body.designation);
-    console.log(req.body.railwayID);
+app.post("/signup", function(req, res, next){
+    if (req.body.password !== req.body.passwordConf) {
+        var err = new Error('Passwords do not match.');
+        err.status = 400;
+        res.send("passwords dont match");
+        return next(err);
+      }
+    
     if (req.body.name &&
         req.body.email &&
         req.body.username &&
@@ -145,7 +200,7 @@ app.post("/signup", function(req, res){
           if (err) {
             return next(err)
           } else {
-            return res.redirect('login');
+            return res.redirect('/login'); // profile == login
           }
         });
       }
