@@ -35,6 +35,11 @@ var restHouseSchema = new mongoose.Schema({
 // It should look something like this:
 
 var UserSchema = new mongoose.Schema({
+  name:{
+      type: String,
+      required: true,
+      trim: true
+  },
   email: {
     type: String,
     unique: true,
@@ -65,6 +70,10 @@ var UserSchema = new mongoose.Schema({
       type: Number,
       required: true,
   },
+  railwayID: {
+      type: String,
+      required: true
+  }
 
 });
 
@@ -72,12 +81,16 @@ var UserSchema = new mongoose.Schema({
  module.exports = User;
  var Resthouse = mongoose.model("Resthouses", restHouseSchema);
  var Resthousebooking = mongoose.model("Resthousebookings", restHouseBookingsSchema);
-
-// app.get("/home", function(req, res){
-//     res.render("landing");
-// });
+ var bcrypt = require('bcrypt');
+ const saltRounds = 10;
+ const myPlaintextPassword = 's0/\/\P4$$w0rD';
+ const someOtherPlaintextPassword = 'not_bacon';
 
 app.get("/", function(req, res){
+    res.redirect("/login");
+});
+
+app.get("/login", function(req, res){
     res.render("lg&su/login.ejs");
     //res.redirect("/irctcTourism");
 });
@@ -85,6 +98,47 @@ app.get("/", function(req, res){
 app.get("/signup", function(req, res){
     res.render("lg&su/signup.ejs");
 });
+
+app.post("/signup", function(req, res){
+    console.log(req.body.name);
+    console.log(req.body.email);
+    console.log(req.body.username);
+    console.log(req.body.password);
+    console.log(req.body.passwordConf);
+    console.log(req.body.contact);
+    console.log(req.body.designation);
+    console.log(req.body.railwayID);
+    if (req.body.name &&
+        req.body.email &&
+        req.body.username &&
+        req.body.password &&
+        req.body.passwordConf &&
+        req.body.contact &&
+        req.body.designation &&
+        req.body.railwayID
+    ) {
+        var userData = {
+          name: req.body.name,
+          email: req.body.email,
+          username: req.body.username,
+          password: req.body.password,
+          passwordConf: req.body.passwordConf,
+          contact: req.body.contact,
+          designation: req.body.designation,
+          railwayID: req.body.railwayID
+        }
+        //use schema.create to insert data into the db
+        User.create(userData, function (err, user) {
+          if (err) {
+            return next(err)
+          } else {
+            return res.redirect('/login');
+          }
+        });
+      }
+    else
+      res.send("Fucked Up!")
+})
 
 // app.get("/admin", function(req, res){
 //     res.render("lg&su/admin.ejs");
