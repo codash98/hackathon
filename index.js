@@ -28,8 +28,48 @@ var restHouseSchema = new mongoose.Schema({
      checkin: Date,
      checkout: Date,
      guests: Number,
- })
+ });
 
+//  create a schema according to the docs and store it in an own folder
+// the schema should describe the fields we have in our form and specify the data it can expect
+// It should look something like this:
+
+var UserSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true
+  },
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  passwordConf: {
+    type: String,
+    required: true,
+  },
+  contact:{
+      type: Number,
+      required: true,
+      unique: true,
+      trim: true,
+  },
+  designation: {
+      type: Number,
+      required: true,
+  },
+
+});
+
+ var User = mongoose.model('User', UserSchema);
+ module.exports = User;
  var Resthouse = mongoose.model("Resthouses", restHouseSchema);
  var Resthousebooking = mongoose.model("Resthousebookings", restHouseBookingsSchema);
 
@@ -38,57 +78,14 @@ var restHouseSchema = new mongoose.Schema({
 // });
 
 app.get("/", function(req, res){
-    // Resthouse.find({}, function(err, result){
-    //     if(err) console.log(err);
-    //     console.log(result);
-    // });
-    res.redirect("/irctcTourism");
+    res.render("lg&su/login.ejs");
+    //res.redirect("/irctcTourism");
 });
-// app.listen(3000, function(){
-//     console.log("Server has started");
-// });
 
+app.get("/signup", function(req, res){
+    res.render("lg&su/signup.ejs");
+});
 
-// // Pages Links
-// app.get("/", function(req, res){
-//     // res.redirect("/irctcTourism");
-//     res.render("lg&su/index.ejs");
-// });
-// app.get("/signup", function(req, res){
-//     res.render("lg&su/signup.ejs");
-// });
-// app.get("/admin", function(req, res){
-//     res.render("lg&su/admin.ejs");
-// });
-// app.get("/landingpage", function(req, res){
-//     res.render("user/landingpage.ejs");
-// });
-// app.get("/resthouse", function(req, res){
-//     res.render("user/resthouse.ejs");
-// });
-// app.get("/result", function(req, res){
-//     res.render("user/result.ejs");
-// });
-// app.get("/mybooking", function(req, res){
-//     res.render("user/mybooking.ejs");
-// });
-// app.get("/contact", function(req, res){
-//     res.render("user/contact.ejs");
-// });
-// app.get("/headadmin", function(req, res){
-//     res.render("admin/headadmin.ejs");
-// });
-// app.get("/sadmin", function(req, res){
-//     res.render("admin/sadmin.ejs");
-// });
-// // Pages Links
-// app.get("/", function(req, res){
-//     // res.redirect("/irctcTourism");
-//     res.render("lg&su/index.ejs");
-// });
-// app.get("/signup", function(req, res){
-//     res.render("lg&su/signup.ejs");
-// });
 // app.get("/admin", function(req, res){
 //     res.render("lg&su/admin.ejs");
 // });
@@ -186,9 +183,9 @@ app.post("/irctcTourism/search", function(req, res){
     oclass = req.body.oclass;
     var roomType;
     if(oclass < 3)
-        oclass = 0;
+        roomtType = 0;
     else
-        oclass = 1;
+        roomType = 1;
     var resthouseData = {city: city, checkIn: checkIn, checkOut: checkOut, guest: guest, roomType:roomType};
     console.log(resthouseData);
 //     Resthouse.find({
