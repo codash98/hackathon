@@ -1,3 +1,5 @@
+cd "C:\Program Files\MongoDB\Server\3.6\bin"
+
 var schema = new Schema({
   name:    String,
   binary:  Buffer,
