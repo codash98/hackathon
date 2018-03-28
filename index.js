@@ -208,6 +208,19 @@ app.post("/signup", function(req, res, next){
       res.send("Fucked Up!")
 })
 
+// GET /logout
+app.get('/logout', function(req, res, next) {
+    if (req.session) {
+      // delete session object
+      req.session.destroy(function(err) {
+        if(err) {
+          return next(err);
+        } else {
+          return res.redirect('/');
+        }
+      });
+    }
+  });
 // app.get("/admin", function(req, res){
 //     res.render("lg&su/admin.ejs");
 // });
@@ -301,7 +314,7 @@ app.post("/irctcTourism/search", function(req, res){
     var city = req.body.city,
     checkIn = req.body.checkIn,
     checkOut = req.body.checkOut,
-    guest     = req.body.guestNo,
+    guest     = req.body.guest,
     oclass = req.body.oclass;
     var roomType;
     if(oclass < 3)
