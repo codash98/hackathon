@@ -47,7 +47,7 @@ app.get("/", function(req, res){
     res.redirect("/irctcTourism");
 });
 
-//INDEX - show all resthouses
+// - show all resthouses
 app.get("/irctcTourism", function(req, res){
     // Get all resthouses from DB
     Resthouse.find({}, function(err, allResthouse){

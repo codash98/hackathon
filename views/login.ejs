@@ -1,9 +1,9 @@
 <% include partials//header %>
-
+`
 <!-- admin Login -->
 <div class="container">
 	<div>
-		<p class="text-right">For admin login <a href="/admin">click here</a></p>
+		<p class="text-right">For admin login <a href="/logAdmin">click here</a></p>
 	</div>
 </div>
 
@@ -14,16 +14,16 @@
 		<div class="col-lg-6"></div>
 		
 		<!-- Log-in Form -->
-		<div id="loginbox" class="col-lg-4">
+		<div id="box" class="col-lg-4">
 			<br>
 			<h4>Log In Here</h4>
-			<form class="" method="post" action="#">
+			<form class="" method="post" action="/login">
 				<div class="form-group">
 					<label for="email" class="cols-sm-2">Email ID :</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
-							<input name="email" id="Email" class="form-control" placeholder="Enter your Email"
-							required type="email"/>
+							<input name="logemail" id="Email" class="form-control" placeholder="Enter your Email"
+							required type="text"/>
 							<hr/>
 						</div>
 					</div>
@@ -32,7 +32,7 @@
 					<label for="password" class="cols-sm-2">Password</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
-							<input type="password" class="form-control" name="password" id="txtPassword"  placeholder="Enter your Password" title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
+							<input type="password" class="form-control" name="logpassword" id="txtPassword"  placeholder="Enter your Password" title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
                                     required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/>
 						</div>
 					</div>
@@ -49,7 +49,7 @@
 				</div>
 			</form>
 			
-			<small class="form-text">New User? <a href="/irctcTourism/signup">Sign Up here.</a></small>
+			<small class="form-text">New User? <a href="/signup">Sign Up here.</a></small>
 			<br>
 		
 		</div>
