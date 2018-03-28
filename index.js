@@ -27,11 +27,17 @@ var restHouseSchema = new mongoose.Schema({
  });
 
  var restHouseBookingsSchema = new mongoose.Schema({
+     username: String,
      name: String,
      roomType: Number,
      checkin: Date,
      checkout: Date,
      guests: Number,
+     fare: Number,
+     bookingDate: Date,
+     designation: Number,
+     roomtType: Number,
+     reason: Number,
  });
 
 //  create a schema according to the docs and store it in an own folder
@@ -316,13 +322,13 @@ app.post("/irctcTourism/search", function(req, res){
     checkOut = req.body.checkOut,
     guest     = req.body.guest,
     oclass = req.body.oclass;
-    var roomType;
+    var roomType = 0;
     if(oclass < 3)
         roomtType = 0;
     else
         roomType = 1;
     var resthouseData = {city: city, checkIn: checkIn, checkOut: checkOut, guest: guest, roomType:roomType};
-    console.log(resthouseData);
+    //console.log(resthouseData);
 //     Resthouse.find({
 //         city: city
 //    }, function(err, searchResult){
@@ -401,6 +407,31 @@ app.get("/irctcTourism/:id", function(req, res){
         }
     });
 });
+
+app.get("/prebook", function(req, res){
+    res.render("prebook", {});//use data from login and pass it
+});
+
+app.post("/prebook", function(req, res){
+    var username,
+    bookingDate = new Date(),
+    checkIn,
+    checkout,
+    guest,
+    designation,
+    city,
+    roomType,
+    fare,
+    reason;
+
+    var newBooking = {username: username, bookingDate: bookingDate, checkIn: checkIn, checkOut:checkout, guest: guest, 
+                      designation: designation, city: city, roomType: roomType, fare: fare, reason: reason}
+    Resthousebooking.create(newBooking, function(err, bookings){
+        if(err) console.log(err);
+        else res.render("bookingConfirmed");
+    })
+
+})
 
 app.get("/irctcTourism/myBooking", function(req, res) {
     res.render("mybooking");
