@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Login Box */
 #box{
 
@@ -15,7 +14,7 @@ img{
 }
 /* Background-image */
 body{
-	background-image: url("ubackground.jpg");
+	/*background-image: url("ubackground.jpg");*/
 	background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -44,50 +43,3 @@ label{
 td,th{
     color: white;
 }
-=======
-/* Login Box */
-#box{
-
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    padding: 10px;
-}
-textarea{
-    border-radius: 15px;
-}
-img{
-    height: 40%;
-    width: 100%;
-}
-/* Background-image */
-body{
-	background-image: url("main.jpg");
-	background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 500px;
-    background-size:cover;
-}
-/* Navbar */
-#navhead{
-    font-weight: bold;
-}
-
-#para{
-    color: white;
-}
-
-/* image */
-#image{
-    height: 100%;
-    width: 100%;
-}
-
-label{
-    color:white;
-}
-
-td,th{
-    color: white;
-}
->>>>>>> c3ad590144341987fe0c3a7290ffa5710c869440

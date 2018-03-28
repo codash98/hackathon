@@ -1,6 +1,6 @@
-body{
-    padding-top: 65px;
-}
+/*body{*/
+/*    padding-top: 65px;*/
+/*}*/
 .black{
     background: black;
     color: #777;
@@ -16,16 +16,30 @@ body{
 }
 #left {
   flex: 0 0 40%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 10px;
 }
 #right {
   flex: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 10px;
 }
+
 #leftform {
   flex: 0 0 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 10px;
 }
 #rightform {
   flex: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 10px;
 }
+
 .carousel{
     background: #2f4357;
     margin-top: 20px;
