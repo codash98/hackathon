@@ -1,31 +1,5 @@
 <% include partials//header %>
-<div class="container">
-<form class="form-inline" action="/irctcTourism/search" method="POST">
-    <div class="form-group">
-        <label class="sr-only" for="inputCity">City</label>
-        <input id="inputCity" class="form-control" type="text" size="50" placeholder="City" name="city" autocomplete="on" required="true">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="inputCheckIn">Check In</label>
-        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" min="2018/04/28" name="checkIn" id="inputCheckIn" placeholder="Check In" required="true">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="inputCheckOut">Check Out</label>
-        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"  id="inputCheckOut" name="checkOut" placeholder="Check Out" required="true">
-    </div>
-    <div class="form-group">
-    	<label class="sr-only" for="inputGuests">Guests</label>
-		<input id="inputGuests"  type="number" min="1" class="form-control" placeholder="No. of Guests" name="guest" required="true">
-    </div>
-    <div class="form-group">
-    	<label class="sr-only" for="inputGuests">Officer Class</label>
-		<input id="inputGuests"  type="number" min="1" max = "6" class="form-control" placeholder="Officer Class" name = "oclass" required="true">
-	</div>
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
-</div>
-<!--Carousel slides-->
-
+<% include partials//searchbar %>
 <div class="container-fluid" id="wrapper">
     <div class="container-fluid" style="width: 40%" id="left">
       <h1>About</h1>

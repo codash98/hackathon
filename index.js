@@ -122,7 +122,7 @@ UserSchema.pre('save', function (next) {
  //hashing a password before saving it to the database
 
 app.get("/", function(req, res){
-    res.redirect("login");
+    res.redirect("/irctcTourism");
 });
 
 app.get("/login", function(req, res){
@@ -216,7 +216,7 @@ app.get('/logout', function(req, res, next) {
         if(err) {
           return next(err);
         } else {
-          return res.redirect('/');
+          return res.redirect('/login');
         }
       });
     }
