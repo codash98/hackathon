@@ -392,6 +392,7 @@ app.post("/irctcTourism/search", function(req, res){
 });
 
 app.get("/irctcTourism/myBooking", function(req, res) {
+    
     res.render("mybooking");
 });
 

@@ -5,3 +5,7 @@ seperable nav-bar
 sessions
 adding security certificate
 sessions to some individual pages
+
+book tickets link
+resthouse reservation on the basis of railway ticket
+if roomt
