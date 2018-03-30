@@ -68,15 +68,18 @@
               </div>
               <div class="form-group col-sm-4">
                   <label for="inputCheckOut" for="inputCheckOut">Check Out Date</label>
-                  <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"  id="inputCheckOut" name="checkOutDate" placeholder="Check Out" required="true">
+                  <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"  id="inputCheckOut" name="checkOutDate" placeholder="Check Out" required="true"> 
               </div>
             </div>
             <div class="row">
               <div class="form-group col-sm-4">
                 <label for="roomType">Type</label>
                 <select class="form-control" id="roomType">
-                    <option>AC</option>
-                    <option>Non AC</option>
+                    <%if(roomType = 0){%>
+                      <option>Non AC</option>
+                    <% }else{ %>
+                      <option>AC</option>
+                    <% } %>
                   </select>
                 </div>
               <div class="form-group col-sm-4">
