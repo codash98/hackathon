@@ -142,7 +142,7 @@ app.use(function(req, res, next){
 
 
 app.get("/", function(req, res){
-    res.redirect("/login");
+    res.redirect("/irctcTourism");
 });
 
 app.get("/login", function(req, res){
