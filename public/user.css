@@ -175,6 +175,15 @@ img{
   padding: 10px;
 }
 
+/* form */
+input [type=text]{
+  background: transparent;
+  border:none;
+  border-bottom: 1px solid #000000;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
 
 .irating{
     background-color: rgba(255, 255, 255, 0.3);

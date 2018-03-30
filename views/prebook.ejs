@@ -1,0 +1,132 @@
+<% include partials/header %>
+<!--form-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 ibox">
+            <h3 class="text-center"></h3>
+            <form class="" method="post" action="#">
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2"><b>Name :</b></label>
+                    <div class="input-group cols-sm-10">
+                        <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" required/>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="RailwayID" class="cols-sm-2"><b>RailwayID :</b></label>
+                        <div class="input-group cols-sm-10">
+                            <input name="txRailwayID" id="txtRailwayId" class="form-control" placeholder="Enter ID"
+                                required  />
+                        </div>
+                </div>
+                <h4>Date:</h4>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="Place" id="para"> <b>   From :</b></label>
+                            <input type="Date" class="form-control" id="Date" placeholder="Date">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="Place"><b>To :</b></label>
+                            <input type="Date" class="form-control" id="Date" placeholder="Date">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="Place"> <b>City :</b></label>
+                            <input class="form-control" type="text" name="city" placeholder="city" id="">                        
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="inputGuests">No. of Guests</label>
+                            <input id="inputGuests"  type="number" min="1" class="form-control" placeholder="No. of Guests" required="true" name="guestNo">    
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label for="roomType">Type</label>
+                        <select class="form-control" id="roomType">
+                            <option>AC</option>
+                            <option>Non AC</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>State your reason for Booking :</label>
+                    <label class="radio-inline">
+                        <input type="radio" data-toggle="collapse" data-parent="reason" href="#official" name="official">Official
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" data-toggle="collapse" href="#personal" name="personal">Personal
+                    </label>
+                </div>
+                
+                <div id="reason">
+                    <div class="collapse" id="official"></div>
+                    <div class="collapse" id="personal">
+                        <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                            placeholder="Message"></textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary col-sm-5">Confirm Booking</button>
+                    <div class="col-lg-8">
+                        <p><a href="" data-toggle="modal" data-target="#myModal"></a></p>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+
+        <div class="col-lg-1"></div>
+        
+        <div class="col-lg-5 ibox text-center">
+            <h4>Your fare calculation</h4>
+            <h5>Fare :    /person</h5>
+            <h5>Total No. of stayers:</h5>
+            <h5>Total fare: Rs.</h5>
+        </div>    
+    </div>   
+</div>			
+			
+
+				
+<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog"-->
+				
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="row">
+							
+							<div class="col-lg-1"></div>
+							
+							<div class="col-lg-10">
+								<h3 class="text-center"><i class="fa fa-lock fa-4x"></i></h3>
+								<h4>Confirm Booking</h4>
+								
+								<form class="form">
+									<fieldset>
+										
+										
+										<!--div class="form-group">
+											<input class="btn btn-lg btn-primary btn-block" value="YES" type="submit">
+											<input class="btn btn-lg btn-primary btn-block" value="NO" type="submit">
+										</div-->
+									</fieldset>
+								</form>
+							</div>
+							
+							<div class="col-lg-1"></div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div-->								
+			
+                                
+<% include partials/footer %>

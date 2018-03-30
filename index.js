@@ -145,6 +145,24 @@ app.get("/", function(req, res){
     res.redirect("/irctcTourism");
 });
 
+
+
+
+
+
+
+app.get("/irctcTourism/prebook", function(req, res){
+    res.render("prebook");
+});
+
+
+
+
+
+
+
+
+
 app.get("/login", function(req, res){
     res.render("login");
     //res.redirect("/irctcTourism");
