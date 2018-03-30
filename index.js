@@ -1,18 +1,25 @@
 var express = require("express");
 var app = express();
 
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
-var bcrypt = require('bcrypt');
-var session = require('express-session')
+var bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    //bcrypt = require('bcrypt'),
+    passport = require("passport"),
+    LocalStrategy = require("passport-local"),
+    passportLocalMongoose = require("passport-local-mongoose"),
+    session = require('express-session');
 
 app.use(express.static("public"));
 // SCHEMA SETUP
-
-
 mongoose.connect("mongodb://localhost:27017/resthouse_1");
+
+app.use(session({secret: 'Keep It Simple Silly', saveUninitialized: false, resave: false}));
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(session({secret: 'your secret', saveUninitialized: true, resave: false}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 app.set("view engine", "ejs");
 
 var restHouseSchema = new mongoose.Schema({
@@ -64,11 +71,6 @@ var UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
-  },
-  passwordConf: {
-    type: String,
-    required: true,
   },
   contact:{
       type: Number,
@@ -87,36 +89,39 @@ var UserSchema = new mongoose.Schema({
 
 });
 
-UserSchema.statics.authenticate = function (email, password, callback) {
-    User.findOne({ email: email })
-      .exec(function (err, user) {
-        if (err) {
-          return callback(err)
-        } else if (!user) {
-          var err = new Error('User not found.');
-          err.status = 401;
-          return callback(err);
-        }
-        bcrypt.compare(password, user.password, function (err, result) {
-          if (result === true) {
-            return callback(null, user);
-          } else {
-            return callback();
-          }
-        })
-      });
-}
 
-UserSchema.pre('save', function (next) {
-    var user = this;
-    bcrypt.hash(user.password, 10, function (err, hash){
-      if (err) {
-        return next(err);
-      }
-      user.password = hash;
-      next();
-    })
-  });
+UserSchema.plugin(passportLocalMongoose);
+
+// UserSchema.statics.authenticate = function (email, password, callback) {
+//     User.findOne({ email: email })
+//       .exec(function (err, user) {
+//         if (err) {
+//           return callback(err)
+//         } else if (!user) {
+//           var err = new Error('User not found.');
+//           err.status = 401;
+//           return callback(err);
+//         }
+//         bcrypt.compare(password, user.password, function (err, result) {
+//           if (result === true) {
+//             return callback(null, user);
+//           } else {
+//             return callback();
+//           }
+//         })
+//       });
+// }
+
+// UserSchema.pre('save', function (next) {
+//     var user = this;
+//     bcrypt.hash(user.password, 10, function (err, hash){
+//       if (err) {
+//         return next(err);
+//       }
+//       user.password = hash;
+//       next();
+//     })
+//   });
 
 
 
@@ -125,10 +130,19 @@ UserSchema.pre('save', function (next) {
  var Resthouse = mongoose.model("Resthouses", restHouseSchema);
  var Resthousebooking = mongoose.model("Resthousebookings", restHouseBookingsSchema);
 
- //hashing a password before saving it to the database
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
 
 app.get("/", function(req, res){
-    res.redirect("/irctcTourism");
+    res.redirect("/login");
 });
 
 app.get("/login", function(req, res){
@@ -136,28 +150,30 @@ app.get("/login", function(req, res){
     //res.redirect("/irctcTourism");
 });
 
-
-app.post("/login", function(req, res, next){
-    console.log(req.body.logemail);
-    console.log(req.body.logpassword);
+app.post("/login", passport.authenticate("local", {
+                    successRedirect: "/irctcTourism", 
+                    failureRedirect: "/login", 
+                }), function(req, res, next){
+                    
+    // console.log(req.body.logemail);
+    // console.log(req.body.logpassword);
     
-    if(req.body.logemail && req.body.logpassword) {
-        User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
-          if (error || !user) {
-              alert("Incorrect Password")
-            // var err = new Error('Wrong email or password.');
-            // err.status = 401;
-            // return next(err);
-          } else {
-            req.session.userId = user._id;
-            return res.redirect('/profile');
-          }
-        });
-      } else {
-        var err = new Error('All fields required.');
-        err.status = 400;
-        return next(err);
-      }
+    // if(req.body.logemail && req.body.logpassword) {
+    //     User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
+    //       if (error || !user) {
+    //         var err = new Error('Wrong email or password.');
+    //         err.status = 401;
+    //         return next(err);
+    //       } else {
+    //         req.session.userId = user._id;
+    //         return res.redirect('/profile');
+    //       }
+    //     });
+    //   } else {
+    //     var err = new Error('All fields required.');
+    //     err.status = 400;
+    //     return next(err);
+    //   }
 });
 
 // GET route after registering
@@ -197,38 +213,61 @@ app.post("/signup", function(req, res, next){
           name: req.body.name,
           email: req.body.email,
           username: req.body.username,
-          password: req.body.password,
           passwordConf: req.body.passwordConf,
           contact: req.body.contact,
           designation: req.body.designation,
           railwayID: req.body.railwayID
         }
         //use schema.create to insert data into the db
-        User.create(userData, function (err, user) {
-          if (err) {
-            return next(err)
-          } else {
-            return res.redirect('/login'); // profile == login
-          }
+        User.register(new User({
+            name: req.body.name,
+            email: req.body.email,
+            username: req.body.username,
+            contact: req.body.contact,
+            designation: req.body.designation,
+            railwayID: req.body.railwayID
+          }), req.body.password, function(err, user){
+            if(err){
+                console.log(err);
+                return res.render("signup")
+            }
+            passport.authenticate("local")(req, res, function(){
+                res.redirect("/login");
+            })
         });
+        // User.create(userData, function (err, user) {
+        //   if (err) {
+        //     return next(err)
+        //   } else {
+        //     return res.redirect('/login'); // profile == login
+        //   }
+        // });
       }
-    else
       res.send("Fucked Up!")
 })
 
 // GET /logout
 app.get('/logout', function(req, res, next) {
-    if (req.session) {
-      // delete session object
-      req.session.destroy(function(err) {
-        if(err) {
-          return next(err);
-        } else {
-          return res.redirect('/login');
-        }
-      });
-    }
+    // if (req.session) {
+    //   // delete session object
+    //   req.session.destroy(function(err) {
+    //     if(err) {
+    //       return next(err);
+    //     } else {
+    //       return res.redirect('/login');
+    //     }
+    //   });
+    // }
+    req.logout();
+    res.redirect();
   });
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 // app.get("/admin", function(req, res){
 //     res.render("lg&su/admin.ejs");
 // });
@@ -250,13 +289,13 @@ app.get('/logout', function(req, res, next) {
 
 
 // - show all resthouses
-app.get("/irctcTourism", function(req, res){
+app.get("/irctcTourism", isLoggedIn, function(req, res){
     // Get all resthouses from DB
     Resthouse.find({}, function(err, allResthouse){
        if(err){
            console.log(err);
        } else {
-          res.render("index",{resthouses:allResthouse});
+          res.render("index",{resthouses:allResthouse, currentUser: req.user});
        }
     });
 });
@@ -393,12 +432,11 @@ app.post("/irctcTourism/search", function(req, res){
         // }
 });
 
-app.get("/irctcTourism/myBooking", function(req, res) {
-    
+app.get("/irctcTourism/myBooking", function (req, res) {
     res.render("mybooking");
 });
-
 // SHOW - shows more info about one resthouse
+
 app.get("/irctcTourism/:id", function(req, res){
     //find the resthouse with provided ID
     Resthouse.findById(req.params.id, function(err, foundResthouse){
@@ -436,9 +474,7 @@ app.post("/prebook", function(req, res){
 
 })
 
-app.get("/irctcTourism/myBooking", function(req, res) {
-    res.render("mybooking");
-});
+
 
 app.get("/contactIRCTC", function(req, res) {
     res.render("contact");
