@@ -144,9 +144,10 @@ app.post("/login", function(req, res, next){
     if(req.body.logemail && req.body.logpassword) {
         User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
           if (error || !user) {
-            var err = new Error('Wrong email or password.');
-            err.status = 401;
-            return next(err);
+              alert("Incorrect Password")
+            // var err = new Error('Wrong email or password.');
+            // err.status = 401;
+            // return next(err);
           } else {
             req.session.userId = user._id;
             return res.redirect('/profile');
