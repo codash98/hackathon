@@ -75,6 +75,26 @@
               <div class="col-sm-4">
                 <label for="inputCity">City</label>
               </div>
+<<<<<<< HEAD
+              <div class="form-group col-sm-4">
+                  <label for="inputCheckOut" for="inputCheckOut">Check Out Date</label>
+                  <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"  id="inputCheckOut" name="checkOutDate" placeholder="Check Out" required="true"> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label for="roomType">Type</label>
+                <select class="form-control" id="roomType">
+                    <%if(roomType = 0){%>
+                      <option>Non AC</option>
+                    <% }else{ %>
+                      <option>AC</option>
+                    <% } %>
+                  </select>
+                </div>
+              <div class="form-group col-sm-4">
+                <label for="inputGuests">No. of Guests</label>
+=======
               <div class="col-sm-8">
                 <input class="form-control" type="text" name="city" placeholder="city" id="inputCity" value="<%= resthouse.city %>">
               </div>
@@ -101,6 +121,7 @@
             </div>
             <div class="form-group col-sm-8">
               <label for="inputGuests">No. of Guests</label>
+>>>>>>> d10f2987e9efc471234a2a9dd5c27a3e5b9a7ca8
               <input id="inputGuests"  type="number" min="1" class="form-control" placeholder="No. of Guests" required="true" name="guestNo">
             </div>
           </div>

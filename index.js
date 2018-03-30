@@ -320,15 +320,15 @@ app.get("/irctcTourism", function(req, res){
 //     });
 // });
 
-//CREATE - add new resthouse to DB
+//CREATE - add new resthouse to DB redirected from /irctcTourism/new
 app.post("/irctcTourism", function(req, res){
     // get data from form and add to resthouses db
     var name = req.body.name,
     image    = req.body.image,
     address  = req.body.address,
     city     = req.body.city,
-    desc     = req.body.description;
-    roomQty0 = req.body.roomsGen;
+    desc     = req.body.description,
+    roomQty0 = req.body.roomsGen,
     roomQty1 = req.body.roomsAC;
 
     var newResthouse = {name: name, image: image, address: address, city: city, description: desc, roomQty: [roomQty0, roomQty1]} ;
@@ -348,12 +348,12 @@ app.get("/irctcTourism/new", function(req, res){
     res.render("new"); 
  });
  
- app.get("/irctcTourism/search", function(req, res){
-    // Get all resthouses from DB
-    Resthouse.find({}, function(err, allResthouse){
-    res.render("search",{resthouses:allResthouse});
-});
-});
+//  app.get("/irctcTourism/search", function(req, res){
+//     // Get all resthouses from DB
+//     Resthouse.find({}, function(err, allResthouse){
+//     res.render("search",{resthouses:allResthouse});
+// });
+// });
 
 //BOOK - show searched resthouses for booking
 app.post("/irctcTourism/search", function(req, res){
@@ -391,13 +391,16 @@ app.post("/irctcTourism/search", function(req, res){
                 function(err, queryResult){
                     if(err) console.log(err);
                     if(queryResult.length == 0){
-                        Resthouse.find({"$and" : [{city:resthouseData.city}, {roomType: resthouseData.roomType}]}, function(err, searchRes){
+                        Resthouse.find({"$and" : [{city:resthouseData.city}]}, function(err, searchRes){
                             if(err)
                                 console.log(err);
                             else{
                                 var searchResthouse = {resthouseData:resthouseData, searchRes: searchRes}
                                 console.log(resthouseData);
-                                res.render("book", {searchResthouse: searchResthouse});
+                                console.log(searchRes);
+                                
+                                // res.render("book", {searchResthouse: searchResthouse});
+                                res.redirect('/irctcTourism/' + searchResthouse.searchRes[0]._id);
                             }
                             });
                     }
