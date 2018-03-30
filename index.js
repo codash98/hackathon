@@ -232,7 +232,7 @@ app.post("/signup", function(req, res, next){
                 return res.render("signup")
             }
             passport.authenticate("local")(req, res, function(){
-                res.redirect("/login");
+               // res.redirect("/login");
             })
         });
         // User.create(userData, function (err, user) {
@@ -259,7 +259,7 @@ app.get('/logout', function(req, res, next) {
     //   });
     // }
     req.logout();
-    res.redirect();
+    res.redirect("/login");
   });
 
 function isLoggedIn(req, res, next){
