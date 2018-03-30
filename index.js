@@ -289,7 +289,7 @@ function isLoggedIn(req, res, next){
 
 
 // - show all resthouses
-app.get("/irctcTourism", isLoggedIn, function(req, res){
+app.get("/irctcTourism", function(req, res){
     // Get all resthouses from DB
     Resthouse.find({}, function(err, allResthouse){
        if(err){
