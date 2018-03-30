@@ -393,12 +393,11 @@ app.post("/irctcTourism/search", function(req, res){
         // }
 });
 
-app.get("/irctcTourism/myBooking", function(req, res) {
-    
+app.get("/irctcTourism/myBooking", function (req, res) {
     res.render("mybooking");
 });
-
 // SHOW - shows more info about one resthouse
+
 app.get("/irctcTourism/:id", function(req, res){
     //find the resthouse with provided ID
     Resthouse.findById(req.params.id, function(err, foundResthouse){
@@ -436,9 +435,7 @@ app.post("/prebook", function(req, res){
 
 })
 
-app.get("/irctcTourism/myBooking", function(req, res) {
-    res.render("mybooking");
-});
+
 
 app.get("/contactIRCTC", function(req, res) {
     res.render("contact");
