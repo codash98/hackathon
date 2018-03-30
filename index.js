@@ -150,7 +150,6 @@ app.get("/login", function(req, res){
     //res.redirect("/irctcTourism");
 });
 
-<<<<<<< HEAD
 app.post("/login", passport.authenticate("local", {
                     successRedirect: "/irctcTourism", 
                     failureRedirect: "/login", 
@@ -175,30 +174,6 @@ app.post("/login", passport.authenticate("local", {
     //     err.status = 400;
     //     return next(err);
     //   }
-=======
-
-app.post("/login", function(req, res, next){
-    console.log(req.body.logemail);
-    console.log(req.body.logpassword);
-    
-    if(req.body.logemail && req.body.logpassword) {
-        User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
-          if (error || !user) {
-              alert("Incorrect Password")
-            // var err = new Error('Wrong email or password.');
-            // err.status = 401;
-            // return next(err);
-          } else {
-            req.session.userId = user._id;
-            return res.redirect('/profile');
-          }
-        });
-      } else {
-        var err = new Error('All fields required.');
-        err.status = 400;
-        return next(err);
-      }
->>>>>>> 5f959eca84881b1e71610f0bdc0b293a2f338b58
 });
 
 // GET route after registering
