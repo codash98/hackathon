@@ -243,7 +243,7 @@ app.post("/signup", function(req, res, next){
         //   }
         // });
       }
-      res.send("Fucked Up!")
+      res.redirect("/login")
 })
 
 // GET /logout
