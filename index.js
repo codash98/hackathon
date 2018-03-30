@@ -136,6 +136,7 @@ app.get("/login", function(req, res){
     //res.redirect("/irctcTourism");
 });
 
+
 app.post("/login", function(req, res, next){
     console.log(req.body.logemail);
     console.log(req.body.logpassword);
