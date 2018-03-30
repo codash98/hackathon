@@ -2,15 +2,15 @@
 <!-- signup Form -->
 <div class="container">
 	<div class="row">
+		
 		<div class="col-lg-3"></div>
 
-		<div id="loginbox" class="col-lg-6">
+		<div class="col-lg-6 box">
 			
 			<h3 class="text-center">Sign Up</h3>
-			<br />
 			<form class="" method="post" action="/signup">
 				<div class="form-group">
-					<label for="name" class="cols-sm-2"><b>Name :</b></label>
+					<label for="name" class="cols-sm-2">Name :</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" required/>
@@ -18,29 +18,27 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="email" class="cols-sm-2"><b>Email :</b></label>
+					<label for="email" class="cols-sm-2">Email :</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<input type = "text" id="txtEmail" name="email" class="form-control" placeholder="Enter Email"
 							required/>
-							<hr/>
 						</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<h6>Enter your post</h6>
+						<h6>Select category</h6>
 						<div class="col-lg-2"></div>
 						<select name = "designation" id="railway" class="form-control">
 							<option value="0" selected>Railway Employee</option>
-							<option value="1">Lok Sabha Member</option>
-							<option value="2">Rajya Sabha Member</option>
-							<option value="3">Retired Railway Employee</option>
-							<option value="4">Other</option>
+							<option value="1">Lok Sabha/Rajya Sabha</option>
+							<option value="2">Retired Railway Employee</option>
+							<option value="3">Tourist</option>
 						</select>
 					</div>
 
 					<div class="form-group">
-						<label for="railwayID" class="cols-sm-2"><b>Railway ID</b></label>
+						<label for="railwayID" class="cols-sm-2">Railway ID</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<input type="text" class="form-control" name="railwayID" id="railwayID"  placeholder="Enter your EmployeeID" required/>
@@ -49,12 +47,12 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="phone_no"><b> Number </b></label>
+						<label for="phone_no">Number</label>
 						<input type="text" name="contact" pattern="^\d{10}$" data-validation="number" mindata-validation-allowing="negative,number" input name="color" data-validation="number" datavalidation-ignore="$" size="10" maxlength="10" required="required" class="form-control" id="phone_no" placeholder="Phone Number"required>
 					</div>
 
 					<div class="form-group">
-						<label for="name" class="cols-sm-2"><b>Username :</b></label>
+						<label for="name" class="cols-sm-2">Username :</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<input type="text" class="form-control" name="username" id="name"  placeholder="Enter Username" required/>
@@ -63,7 +61,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="password" class="cols-sm-2"><b>Password </b></label>
+						<label for="password" class="cols-sm-2">Password</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<input type="password" class="form-control" name="password" id="txtPassword"  placeholder="Enter your Password" title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
@@ -72,7 +70,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="confirm" class="cols-sm-2"><b>Confirm Password</b></label>
+						<label for="confirm" class="cols-sm-2">Confirm Password</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<input type="password" class="form-control" name="passwordConf" id="txtConfirmPassword"  placeholder="Confirm your Password"/>
@@ -83,7 +81,6 @@
 						<button type="submit" class="btn btn-primary"> Sign Up </button>
 					</div>
 				</form>
-				<br>
 			</div>
 
 			<div class="col-lg-3">
@@ -91,9 +88,9 @@
 		</div>
 		
 		
-		<!-- Modal
+		<!-- Modal 
 		<div class="modal fade"  role="dialog">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-text-centered">
 				
 				   Modal content
 				  <div class="modal-content">
@@ -127,7 +124,6 @@
 				  </div>
 				</div>
 				</div> -->
-				<p><a href="page">Just for sake of further procedure</a></p>
 	</div>
 	<script src="/signup.js"></script>
     <% include partials/footer %>

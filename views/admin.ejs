@@ -1,28 +1,25 @@
 <% include partials/header %>
  	
 <!-- admin login -->
-<div id="admin" class="container">
-
+<div class="container">
 	<div class="row">
 
-		<div class="col-lg-4"></div>
+		<div class="col-lg-6"></div>
 		
-		<div id="loginbox" class="col-lg-4">
-			<br>
-			<h2>ADMIN LOGIN</h2>
+		<div class="col-lg-4 col-md-6 box">
+			<h4>ADMIN LOGIN</h4>
 
 			<form class="" method="post" action="#">
 				<div class="form-group">
-					<label for="email" class="cols-sm-2"><b>Email :</b></label>
+					<label for="email" class="cols-sm-2">Email :</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<input name="aemail" id="aemail" class="form-control" placeholder="Enter Email" required type="email" />
-							<hr/>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-						<label for="password" class="cols-sm-2"><b>Password</b>/label>
+						<label for="password" class="cols-sm-2">Password</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<input type="password" class="form-control" name="password" id="txtPassword"  placeholder="Enter your Password" title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
@@ -41,16 +38,14 @@
 					</div>
 				</div>
 			</form>
-			<br>
 		</div>
 		
-		<div class="col-lg-4"></div>	
-	    <a href="/headadmin">Just for the sake of further procedure</a>
+		<div class="col-lg-2"></div>	
 	</div>
 	
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-dialog-centered">
 				
 				<!-- Modal content-->
 				<div class="modal-content">
@@ -61,8 +56,8 @@
 							
 							<div class="col-lg-10">
 								<h3 class="text-center"><i class="fa fa-lock fa-4x"></i></h3>
-								<h2>Forgot Password?</h2>
-								<p>You can reset your password here.</p>
+								<h2 class="text-center">Forgot Password?</h2>
+								<p class="text-center">You can reset your password here.</p>
 								<form class="form">
 									<fieldset>
 										<div class="form-group">
