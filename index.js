@@ -475,16 +475,16 @@ app.get("/prebook", function(req, res){
 });
 
 app.post("/prebook", function(req, res){
-    var username,
+    var username = req.body.username,
     bookingDate = new Date(),
-    checkIn,
-    checkout,
-    guest,
-    designation,
-    city,
-    roomType,
-    fare,
-    reason;
+    checkIn = req.body.checkIn,
+    checkout = req.body.checkOut,
+    guestNo = req.body.guestNo,
+    designation = req.body.designation,
+    city = req.body.city,
+    roomType = req.body.roomType,
+    fare = req.body.fare,
+    reason = req.body.reason;
 
     var newBooking = {username: username, bookingDate: bookingDate, checkIn: checkIn, checkOut:checkout, guest: guest, 
                       designation: designation, city: city, roomType: roomType, fare: fare, reason: reason}
