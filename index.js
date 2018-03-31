@@ -22,6 +22,13 @@ app.use(passport.session());
 
 app.set("view engine", "ejs");
 
+var restBookingSchema = new mongoose.Schema({
+    city: String,
+    checkIn: Date,
+    checkOut: Date,
+    guestNo: Number,
+    });
+
 var restHouseSchema = new mongoose.Schema({
     name: String,
     image: String,
@@ -128,6 +135,7 @@ UserSchema.plugin(passportLocalMongoose);
  var User = mongoose.model('User', UserSchema);
  module.exports = User;
  var Resthouse = mongoose.model("Resthouses", restHouseSchema);
+ var Restbooking = mongoose.model("Restbookings", restBookingSchema);
  var Resthousebooking = mongoose.model("Resthousebookings", restHouseBookingsSchema);
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -387,6 +395,15 @@ app.post("/irctcTourism/search", function(req, res){
     else
         roomType = 1;
     var resthouseData = {city: city, checkIn: checkIn, checkOut: checkOut, guest: guest, roomType:roomType};
+    var newRestbooking = {city: city, checkIn: checkIn, checkOut: checkOut, guestNo: guest};
+    Restbooking.create(newRestbooking,function(err, newlyCreated) {
+        if (err) {
+            console.log(err);
+        } else {
+            //redirect back to resthouse search page
+            res.redirect("/irctcTourism/search");
+        }
+    });
     //console.log(resthouseData);
 //     Resthouse.find({
 //         city: city

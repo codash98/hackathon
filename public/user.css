@@ -11,7 +11,8 @@
   src: url("../fonts/fontawesome/fonts/fontawesome-webfont.eot?v=4.7.0");
   src: url("../fonts/fontawesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal; 
+  }
 
 html {
   overflow-x: hidden;
@@ -141,14 +142,18 @@ a {
 /* Background image */
 body{
   /* background-image: url("lgbackground.jpg"); */
-  background-color:gray;
+  /* background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%); */
+  /* background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%); */
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+  /* background-color:gray;
 	background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 500px;
   background-size:cover;
-  color: black;
+  color: black; */
 }
+.jumbotron{background-color: #FFFFFF!important;}
 textarea{
     border-radius: 15px;
 }
@@ -207,6 +212,9 @@ input [type=text]{
 #image{
     height: 40%;
     width: 100%;
+}
+.thumbnail{
+  color: #fff;
 }
 
 
