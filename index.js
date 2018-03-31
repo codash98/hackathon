@@ -32,12 +32,11 @@ var restBookingSchema = new mongoose.Schema({
 var restHouseSchema = new mongoose.Schema({
     name: String,
     image: String,
-    rooms: [{AC : 5}, {GEN : 5}],
+    roomsAC: Number,
+    roomsGen: Number,
     address: String,
     city: String,
-    description: String,
-    roomsBooked : [{AC : 0}, {GEN : 0}],
-    bookedDates : [ [Date, Number] ] //date and the class of the room
+    description: String //date and the class of the room
  });
 
  var restHouseBookingsSchema = new mongoose.Schema({
@@ -357,7 +356,7 @@ app.post("/irctcTourism", function(req, res){
     roomQty0 = req.body.roomsGen,
     roomQty1 = req.body.roomsAC;
 
-    var newResthouse = {name: name, image: image, address: address, city: city, description: desc, roomQty: [{GEN: roomQty0, AC: roomQty1}]} ;
+    var newResthouse = {name: name, image: image, address: address, city: city, description: desc, roomsGen: roomQty0, roomsAC: roomQty1} ;
     // Create a new resthouse and save to DB
     Resthouse.create(newResthouse, function(err, newlyCreated){
         if(err){
@@ -421,9 +420,9 @@ app.post("/irctcTourism/search", function(req, res){
     // Create a new resthouse and save to DB
         Resthouse.find({city: city}, function(err, roomprop){
             if(roomType == 0)
-                var qty = roomprop.rooms.GEN;
+                var qty = roomprop.roomsGen;
             else
-                var qty = roomprop.rooms.AC;
+                var qty = roomprop.roomsAC;
         
         Resthousebooking.find({"$and" : [{city : city}, {roomType : roomType}, 
                                          {"$or" :[{"$and" : [{checkIn : {"$gte": (checkIn)} }, {checkIn : {"$lte": (checkOut)} } ] },
