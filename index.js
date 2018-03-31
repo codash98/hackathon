@@ -32,11 +32,11 @@ var restBookingSchema = new mongoose.Schema({
 var restHouseSchema = new mongoose.Schema({
     name: String,
     image: String,
-    roomQty: [0, 0],
+    rooms: [{AC : 5}, {GEN : 5}],
     address: String,
     city: String,
     description: String,
-    roomsBooked : [0, 0],
+    roomsBooked : [{AC : 0}, {GEN : 0}],
     bookedDates : [ [Date, Number] ] //date and the class of the room
  });
 
@@ -49,7 +49,7 @@ var restHouseSchema = new mongoose.Schema({
      fare: Number,
      bookingDate: Date,
      designation: Number,
-     roomtType: Number,
+     roomType: Number,
      reason: Number,
  });
 
@@ -357,7 +357,7 @@ app.post("/irctcTourism", function(req, res){
     roomQty0 = req.body.roomsGen,
     roomQty1 = req.body.roomsAC;
 
-    var newResthouse = {name: name, image: image, address: address, city: city, description: desc, roomQty: [roomQty0, roomQty1]} ;
+    var newResthouse = {name: name, image: image, address: address, city: city, description: desc, roomQty: [{GEN: roomQty0, AC: roomQty1}]} ;
     // Create a new resthouse and save to DB
     Resthouse.create(newResthouse, function(err, newlyCreated){
         if(err){
@@ -419,13 +419,18 @@ app.post("/irctcTourism/search", function(req, res){
     // var searchResthouse = {city: city, checkIn: checkIn, checkOut: checkOut, guest: guest, searchResult: searchResult};
     // res.render("book", {searchResthouse: searchResthouse});
     // Create a new resthouse and save to DB
+        Resthouse.find({city: city}, function(err, roomprop){
+            if(roomType == 0)
+                var qty = roomprop.rooms.GEN;
+            else
+                var qty = roomprop.rooms.AC;
         
         Resthousebooking.find({"$and" : [{city : city}, {roomType : roomType}, 
                                          {"$or" :[{"$and" : [{checkIn : {"$gte": (checkIn)} }, {checkIn : {"$lte": (checkOut)} } ] },
                                          {"$and" : [{checkOut : {"$gte": (checkIn)} }, {checkOut : {"$lte": (checkOut)} } ] }]} ]}, 
                 function(err, queryResult){
                     if(err) console.log(err);
-                    if(queryResult.length == 0){
+                    if(queryResult.length < qty){
                         // Resthouse.find({"$and" : [{city:resthouseData.city}]}, function(err, searchRes){
                         //     if(err)
                         //         console.log(err);
@@ -452,6 +457,7 @@ app.post("/irctcTourism/search", function(req, res){
                         res.send("Not Found!");
                     }
                 });
+            });
         // if(result == 0)
         // {
         //     Resthouse.find({"$and" : [{city:city}, {roomType: 0}]}, function(err, searchRes){
