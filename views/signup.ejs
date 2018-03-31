@@ -41,7 +41,8 @@
 						<label for="railwayID" class="cols-sm-2">Railway ID</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<input type="text" class="form-control" name="railwayID" id="railwayID"  placeholder="Enter your EmployeeID" required/>
+								<input type="text" class="form-control" name="railwayID" id="railwayID"required pattern="[A-Za-z0-9-]{11}"  maxlength="11"  placeholder="Enter your EmployeeID" title="ID must contain: 11 characters with Alphabet and numbers " required />
+							
 							</div>
 							<p><b>An OTP will be sent to your registered mobile No.</b></p>
 						</div>
