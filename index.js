@@ -43,8 +43,8 @@ var restHouseSchema = new mongoose.Schema({
  var restHouseBookingsSchema = new mongoose.Schema({
      username: String,
      roomType: Number,
-     checkin: Date,
-     checkout: Date,
+     checkIn: Date,
+     checkOut: Date,
      guests: Number,
      fare: Number,
      bookingDate: Date,
@@ -52,6 +52,12 @@ var restHouseSchema = new mongoose.Schema({
      roomtType: Number,
      reason: Number,
  });
+
+ var officialRequestSchema = new mongoose.Schema({
+     userid: String,
+     reason: String,
+     requestorsID: String,
+ })
 
 //  create a schema according to the docs and store it in an own folder
 // the schema should describe the fields we have in our form and specify the data it can expect
@@ -87,7 +93,7 @@ var UserSchema = new mongoose.Schema({
 });
 
 var bookingDetailsSchema = new mongoose.Schema({username:{type:String}, city:{type:String},
-    checkIn:{type:Date},checkIOut:{type:Date},guestNo: {type: Number}, roomType: {type: Number}, reason: {type: Number}     
+    checkIn:{type:Date},checkOut:{type:Date},guestNo: {type: Number}, roomType: {type: Number}, reason: {type: Number}     
 });
 
 UserSchema.plugin(passportLocalMongoose);
@@ -130,6 +136,7 @@ UserSchema.plugin(passportLocalMongoose);
  var bookingDetails = mongoose.model('bookingDetails', bookingDetailsSchema);
  var Resthouse = mongoose.model("Resthouses", restHouseSchema);
  var Restbooking = mongoose.model("Restbookings", restBookingSchema);
+ var officialRequest = mongoose.model("officialRequest", officialRequestSchema);
  var Resthousebooking = mongoose.model("Resthousebookings", restHouseBookingsSchema);
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -394,7 +401,7 @@ app.post("/irctcTourism/search", function(req, res){
             console.log(err);
         } else {
             //redirect back to resthouse search page
-            res.redirect("/irctcTourism/search");
+            //res.redirect("/irctcTourism/search");
         }
     });
     //console.log(resthouseData);
@@ -472,7 +479,7 @@ app.post("/irctcTourism/search", function(req, res){
         // }
 });
 
-app.get("/irctcTourism/myBooking", function (req, res) {
+app.get("/myBooking", function (req, res) {
     res.render("mybooking");
 });
 // SHOW - shows more info about one resthouse
@@ -535,8 +542,21 @@ app.post("/prebook", function(req, res){
     })
             });
 
+});
+
+app.get("/reqform", function(req, res){
+    res.render("reason");
 })
 
+app.post("/reqform", function(err, res)
+{
+    var userid = req.body.userid;
+    var reason = req.body.reason;
+    var requestorsID = req.body.requestorsID;
+    officialRequest.create({userid: userid, reason: reason, requestorsID: requestorsID}, function(err, request){
+        res.redirect("/irctcTourism");
+    });
+})
 
 
 app.get("/contactIRCTC", function(req, res) {

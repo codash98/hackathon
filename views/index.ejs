@@ -1,8 +1,4 @@
 <% include partials/header %>
-<<<<<<< HEAD
-
-=======
->>>>>>> 457e3bbe708f005292113af4bff7fc7446436ed4
 <div class="container">
     <form class="form-inline" action="/irctcTourism/search" method="POST">
 
@@ -20,16 +16,16 @@
                 <div class="row">
                     <div class="col-lg-5 col-sm-6">
                         <div class="form-group">
-                            <label class="sr-only" for="inputCheckIn">Check In</label>
-                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" min="2018/04/28" name="checkIn"
-                            id="inputCheckIn" placeholder="Check In">
+                            <label class="sr-only" for="inputcheckIn">Check In</label>
+                            <input type="date" min="2018/04/28" name="checkIn"
+                            id="inputcheckIn" placeholder="Check In">
                         </div>
                     </div>
                     <div class="col-lg-2"></div>
                     <div class="col-lg-5 col-sm-6">
                         <div class="form-group">
                             <label class="sr-only" for="inputCheckOut">Check Out</label>
-                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="inputCheckOut" name="checkOut"
+                            <input type="date" class="form-control" id="inputCheckOut" name="checkOut"
                             placeholder="Check Out">
                         </div>
                     </div>
@@ -44,7 +40,7 @@
                 </div>
             </div>
         </div>
-        </form>
+
 
         <div class="row">
             
@@ -56,7 +52,7 @@
         <div class="row">
             <br>
         </div>
-
+    </form>
 
 
 
@@ -70,7 +66,8 @@
                      <p>Plan your holidays and Official visites on a click of a button.</p>
                      <p>
                         <!-- <a class="btn btn-primary btn-large" href="/irctcTourism/new">Add New Resthouses</a> -->
-                        <a class="btn btn-primary btn-large" href="/login">Log in / Sign up</a>
+                        <!-- <a class="btn btn-primary btn-large" href="/login">Log in / Sign up</a> -->
+                        <a class="btn btn-primary btn-large" href="/reqform">Add Reference</a>
                      </p>
                  </div>
      </header>

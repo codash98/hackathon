@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-6 ibox">
             <h3 class="text-center"></h3>
-            <form class="" method="post" action="#">
+            <form class="" method="post" action="/mybooking">
                 <!-- <div class="form-group">
                     <label for="name" class="cols-sm-2"><b>Name :</b></label>
                     <div class="input-group cols-sm-10">
@@ -24,11 +24,11 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="Place" id="para"> <b>   From :</b></label>
-                            <input type="Date" class="form-control" id="checkInDate" value ="<%= newBooking.checkIn %>" placeholder="Date">
+                            <input type="text" class="form-control" id="checkInDate" value ="<%= newBooking.checkIn %>" placeholder="Date">
                         </div>
                         <div class="col-lg-6">
                             <label for="Place"><b>To :</b></label>
-                            <input type="Date" class="form-control" id="checkOutDate" value ="<%= newBooking.checkOut %>" placeholder="Date">
+                            <input type="text" class="form-control" id="checkOutDate" value ="<%= newBooking.checkOut %>" placeholder="Date">
                         </div>
                     </div>
                 </div>
@@ -64,21 +64,20 @@
                 </div>
                 
                 <div id="reason">
-                    <div class="collapse" id="official"></div>
                     <div class="collapse" id="personal">
                         <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
                             placeholder="Message"></textarea>
                     </div>
                 </div>
-                <br>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary col-sm-5">Confirm Booking</button>
-                    <div class="col-lg-8">
-                        <p><a href="" data-toggle="modal" data-target="#myModal"></a></p>
-                    </div>
-                </div>
-                
+                <br>+
             </form>
+            <div class="form-group">
+                <a href="/mybooking" class="btn btn-primary col-sm-5" type="button">Confirm Booking</a>
+                <!-- <button type="submit" class="btn btn-primary col-sm-5">Confirm Booking</button> -->
+                <div class="col-lg-8">
+                    <p><a href="" data-toggle="modal" data-target="#myModal"></a></p>
+                </div>
+            </div>
         </div>
 
         <div class="col-lg-1"></div>
