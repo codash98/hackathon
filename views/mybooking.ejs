@@ -1,74 +1,34 @@
 <% include partials/header %>
-<!-- Current Booking -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="row box">
-                <div class="col-lg-3">
-                    <!-- imgae -->
-                </div>
-
-                <div class="col-lg-6">
-                    <h3>Jain Hostel</h3>
-                    <p>Address</p>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <h5>Check In:</h5>
-                            <p>Date</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <h5>Check Out:</h5>
-                            <p>Date</p>             
-                        </div>
-                        <div class="col-lg-4">
-                            <h5>Status:</h5>
-                            <p>Confirmed</p>             
-                        </div>                        
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <iframe height="100%" width="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=19.8682711%2C75.3238631&key=AIzaSyBCByPN0VN6e4DmvN6BjlinGOuL5-MgpJk" allowfullscreen></iframe>
-                </div>    
+<% newBooking.forEach(function(booking){ %>
+    <div class="col-lg-12">
+        <div class="row box">
+            <div class="col-lg-3">
+                <img src="" alt="">
             </div>
-        </div>
 
-<!-- Complete Booking -->
-<div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row box">
-                    <div class="col-lg-3">
-                        <!-- imgae -->
+            <div class="col-lg-6">
+                <h3>Hotel City: <%=newBooking.city%></h3>
+                <button ></button>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5>Check In:  </h5>
+                        <p><%=newBooking.checkIn%></p>
                     </div>
-    
-                    <div class="col-lg-6">
-                        <h3>Jain Hostel</h3>
-                        <p>Address</p>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <h5>Check In:</h5>
-                                <p>Date</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <h5>Check Out:</h5>
-                                <p>Date</p>             
-                            </div>
-                            <div class="col-lg-4">
-                                <h5>Status:</h5>
-                                <p>Confirmed</p>             
-                            </div>                        
-                        </div>
+                    <div class="col-lg-4">
+                        <h5>Check Out:</h5>
+                        <p><%=newBooking.checkOut%></p>             
                     </div>
-    
-                    <div class="col-lg-3">
-                        <iframe height="100%" width="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=19.8682711%2C75.3238631&key=AIzaSyBCByPN0VN6e4DmvN6BjlinGOuL5-MgpJk" allowfullscreen></iframe>
-                    </div>    
+                    <div class="col-lg-4">
+                        <h5>Status:</h5>
+                        <p>Confirmed</p>             
+                    </div>                        
                 </div>
             </div>
+
+            <div class="col-lg-3">
+                <iframe height="100%" width="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=19.8682711%2C75.3238631&key=AIzaSyBCByPN0VN6e4DmvN6BjlinGOuL5-MgpJk" allowfullscreen></iframe>
+                <button disabled="disabled" type="" class="btn btn-primary" href="https://maps.google.com/maps?ll=19.86193,75.249246&z=9&t=h&hl=en-US&gl=US&mapclient=embed&q=19%C2%B052%2705.8%22N%2075%C2%B019%2725.9%22E@19.8682711,75.3238631">View location</button>
+            </div>    
         </div>
     </div>
-
-
-
-        <% include partials/footer %>
+<% include partials/footer %>
