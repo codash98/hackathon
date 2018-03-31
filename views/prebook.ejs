@@ -5,18 +5,18 @@
         <div class="col-lg-6 ibox">
             <h3 class="text-center"></h3>
             <form class="" method="post" action="#">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="name" class="cols-sm-2"><b>Name :</b></label>
                     <div class="input-group cols-sm-10">
-                        <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" required/>
+                        <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" value ="" required/>
                     </div>
-                </div>
+                </div> -->
                 <br>
                 <div class="form-group">
                     <label for="RailwayID" class="cols-sm-2"><b>RailwayID :</b></label>
                         <div class="input-group cols-sm-10">
-                            <input name="txRailwayID" id="txtRailwayId" class="form-control" placeholder="Enter ID"
-                                required  />
+                            <input readonly name="txRailwayID" id="txtRailwayId" class="form-control" placeholder="Enter ID" value ="<%= currentUser.username%>"
+                                required />
                         </div>
                 </div>
                 <h4>Date:</h4>
@@ -24,11 +24,11 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="Place" id="para"> <b>   From :</b></label>
-                            <input type="Date" class="form-control" id="Date" placeholder="Date">
+                            <input type="Date" class="form-control" id="checkInDate" value ="<%= newBooking.checkIn %>" placeholder="Date">
                         </div>
                         <div class="col-lg-6">
                             <label for="Place"><b>To :</b></label>
-                            <input type="Date" class="form-control" id="Date" placeholder="Date">
+                            <input type="Date" class="form-control" id="checkOutDate" value ="<%= newBooking.checkOut %>" placeholder="Date">
                         </div>
                     </div>
                 </div>
@@ -36,12 +36,12 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="Place"> <b>City :</b></label>
-                            <input class="form-control" type="text" name="city" placeholder="city" id="">                        
+                            <input class="form-control" type="text" name="city" placeholder="city" value ="<%= newBooking.city %>" id="">                        
                         </div>
-                        <div class="col-lg-6">
+                        <!-- <div class="col-lg-6">
                             <label for="inputGuests">No. of Guests</label>
-                            <input id="inputGuests"  type="number" min="1" class="form-control" placeholder="No. of Guests" required="true" name="guestNo">    
-                        </div>
+                            <input id="inputGuests"  type="number" min="1" class="form-control" placeholder="No. of Guests" value ="" required="true" name="guestNo">    
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group row">

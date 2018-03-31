@@ -1,8 +1,66 @@
 <% include partials//header %>
-<% include partials//searchbar %>
+
 <div class="container">
-    <h1><%=resthouse.name%></h1>
-    <p><%= resthouse.address %></p>
+  <form class="form-inline" action="/irctcTourism/search" method="POST  ">
+
+      <div class="row">
+          <div class="col-lg-4 col-sm-12">
+                  <div class="form-group">
+                      <label class="sr-only" for="inputCity">City</label>
+                      <input id="inputCity" class="form-control" type="text" size="50" placeholder="City" name="city" value="<%=searchResthouse.resthouseData.city %>"autocomplete="on">
+                  </div>
+          </div>
+          
+          <div class="col-lg-1"></div>
+          
+          <div class="col-lg-4 col-sm-12">
+              <div class="row">
+                  <div class="col-lg-5 col-sm-6">
+                      <div class="form-group">
+                          <label class="sr-only" for="inputCheckIn">Check In</label>
+                          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" min="2018/04/28" name="checkIn" value="<%=searchResthouse.resthouseData.checkIn %>"
+                          id="inputCheckIn" placeholder="Check In">
+                      </div>
+                  </div>
+                  <div class="col-lg-2"></div>
+                  <div class="col-lg-5 col-sm-6">
+                      <div class="form-group">
+                          <label class="sr-only" for="inputCheckOut">Check Out</label>
+                          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="inputCheckOut" name="checkOut" value="<%=searchResthouse.resthouseData.checkOut %>"
+                          placeholder="Check Out">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-1"></div>
+          
+          <div class="col-lg-2 col-sm-12">
+              <div class="form-group">
+                  <label class="sr-only" for="inputGuests">Guests</label>
+                  <input id="inputGuests" type="number" min="1" max="4" class="form-control" placeholder="No. of Guests" name="guest" value="<%=searchResthouse.resthouseData.guestNo %>">
+              </div>
+          </div>
+      </div>
+              
+      <div class="row">
+          <div class="col-lg-12">
+              <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+          
+      </div>
+  </form>
+      <div class="row">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+      </div>
+
+
+<div class="container">
+    <h1><%=searchResthouse.resthouseData.guestNo%></h1>
+    <p><%= searchResthouse.resthouseData.address %></p>
 </div>
 <div class="container">
   <div class="row">
@@ -74,11 +132,11 @@
             
           </div>
         <br>
-        <form action="/irctcTourism/booking" method="POST">
+        <form action = "/prebook" method = "POST">
           
           <div class="row">
             <div class="col-sm-1"></div>
-            <div class="form-group col-sm-4">
+            <!-- <div class="form-group col-sm-4">
               <label for="inputCheckIn"S>Check In Date</label>
               <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" min="2018/04/28" name="checkInDate" id="inputCheckIn" placeholder="Check In" required="true">
             </div>
@@ -87,7 +145,7 @@
             <div class="form-group col-sm-4">
               <label for="inputCheckOut" for="inputCheckOut">Check Out Date</label>
               <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"  id="inputCheckOut" name="checkOutDate" placeholder="Check Out" required="true">
-            </div>
+            </div> -->
             <div class="col-sm-1"></div>
             
           </div>
@@ -96,17 +154,17 @@
           <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="inputCity">City</label>
-                <input class="form-control" type="text" name="city" placeholder="city" id="inputCity" value="<%= resthouse.city %>">
-              </div>
+                <input class="form-control" type="text" name="city" placeholder="city" id="inputCity">
+              </div> -->
             </div>
             <div class="col-sm-2"></div>
-            
+<!--             
             <div class="form-group col-sm-4">
               <label for="inputGuests">No. of Guests</label>
               <input id="inputGuests"  type="number" min="1" class="form-control" placeholder="No. of Guests" required="true" name="guestNo">
-            </div>
+            </div> -->
             <div class="col-sm-1"></div>
             
           </div>
@@ -115,9 +173,9 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-2">
                 <label for="roomType">Type</label>
-                <select class="form-control" id="roomType">
-                  <option>AC</option>
-                  <option>Non AC</option>
+                <select class="form-control" id="roomType" value="<%=searchResthouse.resthouseData.roomType %>">
+                  <option>AC(0)</option>
+                  <option>Non AC(1)</option>
                 </select>
                 
             </div>
@@ -133,7 +191,7 @@
               <div class="col-sm-5">
                   <br>
                 <button class="btn btn-primary">Book</button>
-                <a href="/irctcTourism/prebook">Again for the sake</a>
+                <a href="/prebook">Again for the sake</a>
               </div>
             </div>
           </div>
@@ -323,6 +381,6 @@
 </div>
 
 <div style="margin: 25px; padding:20px;">
-  <img src="<%= resthouse.image %>">
+  <img src="<%= searchResthouse.resthouseData.image %>">
 </div>
 <% include partials//footer %>

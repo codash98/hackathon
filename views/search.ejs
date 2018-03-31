@@ -1,5 +1,62 @@
 <% include partials//header %>
-<% include partials//searchbar %>
+
+<div class="container">
+  <form class="form-inline" action="/irctcTourism/search" method="POST">
+
+      <div class="row">
+          <div class="col-lg-4 col-sm-12">
+                  <div class="form-group">
+                      <label class="sr-only" for="inputCity">City</label>
+                      <input id="inputCity" class="form-control" type="text" size="50" placeholder="City" name="city" autocomplete="on">
+                  </div>
+          </div>
+          
+          <div class="col-lg-1"></div>
+          
+          <div class="col-lg-4 col-sm-12">
+              <div class="row">
+                  <div class="col-lg-5 col-sm-6">
+                      <div class="form-group">
+                          <label class="sr-only" for="inputCheckIn">Check In</label>
+                          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" min="2018/04/28" name="checkIn"
+                          id="inputCheckIn" placeholder="Check In">
+                      </div>
+                  </div>
+                  <div class="col-lg-2"></div>
+                  <div class="col-lg-5 col-sm-6">
+                      <div class="form-group">
+                          <label class="sr-only" for="inputCheckOut">Check Out</label>
+                          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="inputCheckOut" name="checkOut"
+                          placeholder="Check Out">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-1"></div>
+          
+          <div class="col-lg-2 col-sm-12">
+              <div class="form-group">
+                  <label class="sr-only" for="inputGuests">Guests</label>
+                  <input id="inputGuests" type="number" min="1" max="4" class="form-control" placeholder="No. of Guests" name="guest">
+              </div>
+          </div>
+      </div>
+              
+      <div class="row">
+          <div class="col-lg-12">
+              <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+          
+      </div>
+      <div class="row">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+      </div>
+
+
 <div class="container">
   <div class="row">
     <div class="col-lg-7">

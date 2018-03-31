@@ -35,7 +35,6 @@ var restHouseSchema = new mongoose.Schema({
 
  var restHouseBookingsSchema = new mongoose.Schema({
      username: String,
-     name: String,
      roomType: Number,
      checkin: Date,
      checkout: Date,
@@ -52,11 +51,6 @@ var restHouseSchema = new mongoose.Schema({
 // It should look something like this:
 
 var UserSchema = new mongoose.Schema({
-  name:{
-      type: String,
-      required: true,
-      trim: true
-  },
   email: {
     type: String,
     unique: true,
@@ -82,13 +76,12 @@ var UserSchema = new mongoose.Schema({
       type: Number,
       required: true,
   },
-  railwayID: {
-      type: String,
-      required: true
-  }
 
 });
 
+var bookingDetailsSchema = new mongoose.Schema({username:{type:String}, city:{type:String},
+    checkIn:{type:Date},checkIOut:{type:Date},guestNo: {type: Number}, roomType: {type: Number}, reason: {type: Number}     
+});
 
 UserSchema.plugin(passportLocalMongoose);
 
@@ -127,6 +120,7 @@ UserSchema.plugin(passportLocalMongoose);
 
  var User = mongoose.model('User', UserSchema);
  module.exports = User;
+ var bookingDetails = mongoose.model('bookingDetails', bookingDetailsSchema);
  var Resthouse = mongoose.model("Resthouses", restHouseSchema);
  var Resthousebooking = mongoose.model("Resthousebookings", restHouseBookingsSchema);
 
@@ -238,7 +232,6 @@ app.post("/signup", function(req, res, next){
         }
         //use schema.create to insert data into the db
         User.register(new User({
-            name: req.body.name,
             email: req.body.email,
             username: req.body.username,
             contact: req.body.contact,
@@ -366,12 +359,12 @@ app.get("/irctcTourism/new", function(req, res){
     res.render("new"); 
  });
  
-//  app.get("/irctcTourism/search", function(req, res){
-//     // Get all resthouses from DB
-//     Resthouse.find({}, function(err, allResthouse){
-//     res.render("search",{resthouses:allResthouse});
-// });
-// });
+ app.get("/irctcTourism/search", function(req, res){
+    // Get all resthouses from DB
+    Resthouse.find({}, function(err, allResthouse){
+    res.render("search",{resthouses:allResthouse});
+});
+});
 
 //BOOK - show searched resthouses for booking
 app.post("/irctcTourism/search", function(req, res){
@@ -409,18 +402,27 @@ app.post("/irctcTourism/search", function(req, res){
                 function(err, queryResult){
                     if(err) console.log(err);
                     if(queryResult.length == 0){
-                        Resthouse.find({"$and" : [{city:resthouseData.city}]}, function(err, searchRes){
-                            if(err)
-                                console.log(err);
-                            else{
-                                var searchResthouse = {resthouseData:resthouseData, searchRes: searchRes}
-                                console.log(resthouseData);
-                                console.log(searchRes);
-                                
-                                // res.render("book", {searchResthouse: searchResthouse});
-                                res.redirect('/irctcTourism/' + searchResthouse.searchRes[0]._id);
-                            }
-                            });
+                        // Resthouse.find({"$and" : [{city:resthouseData.city}]}, function(err, searchRes){
+                        //     if(err)
+                        //         console.log(err);
+                        //     else{
+                        //         var searchResthouse = {resthouseData:resthouseData, searchRes: searchRes, }
+                        //         var details = {city: resthouseData.city, checkIn: resthouseData.checkIn, checkOut: resthouseData.checkOut, guestNo: resthouseData.guestNo,
+                        //                         roomType: resthouseData.roomType, username: currentUser.username};
+                        //         console.log(resthouseData);
+                        //         console.log(searchRes);
+                        //         bookingDetails.create(details, function(err, newDetails))
+                        //         {
+                        //         res.render("show", {searchResthouse: searchResthouse});
+                        //         //res.redirect('/irctcTourism/' + searchResthouse.searchRes[0]._id);
+                        //         }
+                        //     }
+                        //     });
+
+                        var details = {city: resthouseData.city, checkIn: resthouseData.checkIn, checkOut: resthouseData.checkOut, guestNo: resthouseData.guestNo,
+                            roomType: resthouseData.roomType, username:req.user.username};
+                            bookingDetails.create(details, function(err, newDetails){});
+                            res.redirect("/irctcTourism/show");
                     }
                     else{
                         res.send("Not Found!");
@@ -458,40 +460,63 @@ app.get("/irctcTourism/myBooking", function (req, res) {
 });
 // SHOW - shows more info about one resthouse
 
-app.get("/irctcTourism/:id", function(req, res){
-    //find the resthouse with provided ID
-    Resthouse.findById(req.params.id, function(err, foundResthouse){
+app.get("/irctcTourism/show", function(req, res){
+    bookingDetails.findOne({username: req.user.username}, function(err, resDetails){
         if(err){
             console.log(err);
-        } else {
-            //render show template with that resthouse
-            res.render("show", {resthouse: foundResthouse});
         }
-    });
+        else{
+            Resthouse.find({"$and" : [{city:resDetails.city}, {roomType: 0}]}, function(err, searchRes){
+                if(err)
+                {
+                    console.log(err);
+                }
+                else{
+                    console.log(resDetails);
+                    var searchResthouse = {resthouseData:resDetails, searchRes: searchRes};
+                    res.render("show", {searchResthouse: searchResthouse});
+                }
+            });
+        }
+    
+    //find the resthouse with provided ID
+    // Resthouse.findById(req.params.id, function(err, foundResthouse){
+    //     if(err){
+    //         console.log(err);
+    //     } else {
+    //         //render show template with that resthouse
+    //         res.render("show", {resthouse: foundResthouse});
+    //     }
+    // });
+});
 });
 
-app.get("/prebook", function(req, res){
-    res.render("prebook", {});//use data from login and pass it
-});
+// app.get("/prebook", function(req, res){
+//     res.render("prebook", {});//use data from login and pass it
+// });
 
 app.post("/prebook", function(req, res){
     var username = req.body.username,
     bookingDate = new Date(),
-    checkIn = req.body.checkIn,
-    checkout = req.body.checkOut,
-    guestNo = req.body.guestNo,
-    designation = req.body.designation,
     city = req.body.city,
     roomType = req.body.roomType,
     fare = req.body.fare,
     reason = req.body.reason;
 
-    var newBooking = {username: username, bookingDate: bookingDate, checkIn: checkIn, checkOut:checkout, guest: guest, 
-                      designation: designation, city: city, roomType: roomType, fare: fare, reason: reason}
+    bookingDetails.findOne({username: req.user.username}, function(err, resDetails){
+        var newBooking = {username: resDetails.username, bookingDate: bookingDate, checkIn: resDetails.checkIn, checkOut: resDetails.checkOut,  
+             city: resDetails.city, roomType: roomType, fare: 20, reason: reason}    
+    
+            
     Resthousebooking.create(newBooking, function(err, bookings){
         if(err) console.log(err);
-        else res.render("bookingConfirmed");
+        else 
+        {
+            console.log(newBooking);
+            res.render("prebook", {newBooking: newBooking});
+        }
     })
+            });
 
 })
 
